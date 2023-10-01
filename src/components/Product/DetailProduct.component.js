@@ -1,43 +1,41 @@
-//import axios from 'axios';
-import React, { useEffect } from 'react'
-import { useParams, useHistory } from 'react-router-dom';
-
+import React, { useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { detailsProduct } from "../../Redux/Actions/ProductActions"
-import { Spinner } from 'react-bootstrap';
 
-import { ShoppingCartOutlined } from '@ant-design/icons';
 import { Button } from 'antd';
+import { Spinner } from 'react-bootstrap';
+import { ShoppingCartOutlined } from '@ant-design/icons';
+
+import { addNewCart } from "../../Redux/Actions/CartActions";
+import { detailsProduct } from "../../Redux/Actions/ProductActions";
+import CarouselImage from './CarouselImage.component';
+import { formattedAmount } from '../../helpers/format_money';
+import DetailInfo from './DetailInfo.component';
+
 export default function DetailProduct() {
-    let { slug } = useParams();
-    // let [detail, setDetail] = useState('');
-
-    // useEffect(() => {
-    //     const fetchData = async () => {
-    //         let { data } = await axios.get(`http://localhost:8000/v1/eco/product/detail-product/${slug}`)
-    //         if (data.status && data.data) {
-    //             setDetail(data.data)
-    //         }
-    //     }
-    //     fetchData()
-    // }, [slug])
-
-    //------------------------------------------------------------------------------
     const dispatch = useDispatch();
+    let { product_id } = useParams();
 
+    const language = useSelector(state => state.language);
+    let { lang } = language;
+
+    const userLogin = useSelector(state => state.userLogin);
     const productDetails = useSelector(state => state.productDetails);
 
-    const { loading, error, payload: detail } = productDetails;
+    const { infoUser } = userLogin;
+    const { loading, error, detail } = productDetails;
 
     useEffect(() => {
-        dispatch(detailsProduct(slug))
-    }, [dispatch, slug])
+        window.scrollTo(0, 0);
+
+        dispatch(detailsProduct(product_id))
+    }, [dispatch, product_id])
 
     //----------Add To Cart --------
-    const history = useHistory();
-    const handleAddToCart = () => {
-        console.log('Add to cart')
-        history.push(`/cart`)
+    const handleAddToCart = (product_id) => {
+        if (infoUser.id && infoUser.username) {
+            dispatch(addNewCart(infoUser.id, product_id, 1, lang))
+        }
     }
 
     return (
@@ -51,33 +49,51 @@ export default function DetailProduct() {
                     ) : (
                         <>
                             <div className="list-images">
-                                {
-                                    detail && detail.link_image &&
-                                    <img src={detail.link_image[0]} alt="imgCar"></img>
-                                }
-                                {/* <img src="https://vinfastmientrung.com/wp-content/uploads/2022/08/vinfast-color-xe-o-to-dien_0018_vf-9.png" alt="imgCar"></img> */}
-                                {/* <img src={detailProduct.link_image[0]} alt="imgCar"></img> */}
+                                <CarouselImage></CarouselImage>
                             </div>
                             <div className="content-detail">
                                 {
                                     detail && detail.name &&
                                     <>
-                                        <p>{detail.name}</p>
-                                        <Button onClick={handleAddToCart}
+                                        <h2>{detail.name}</h2>
+                                        <p>{formattedAmount(detail.price)}</p>
+
+                                        <div className="box-promotion">
+                                            {
+                                                lang === "en" ?
+                                                    <>
+                                                        <p><strong>Promotions & Deals</strong></p>
+                                                        <p>-Free MBI material insurance</p>
+                                                        <p>-Free genuine accessories Heat insulation film + Nano coating</p>
+                                                        <p>-Offering a 3-year unlimited km warranty</p>
+                                                        <p>-Car handover ceremony</p>
+                                                        <p><em>* Please contact the consulting hotline to receive information about incentives and promotions</em></p>
+                                                    </>
+                                                    :
+                                                    <>
+                                                        <p><strong>Khuyến mãi & Ưu đãi</strong></p>
+                                                        <p>-Tặng bảo hiểm vật chất MBI</p>
+                                                        <p>-Tặng phụ kiện chính hãng Film cách nhiệt + phủ Nano</p>
+                                                        <p>-Tặng bảo hành 3 năm không giới hạn km</p>
+                                                        <p>-Tặng lễ bàn giao xe</p>
+                                                        <p><em>* Quý khách vui lòng liên hệ hotline tư vấn, nhận thông tin ưu đãi và khuyến mãi</em></p>
+                                                    </>
+                                            }
+
+                                        </div>
+
+                                        <Button onClick={() => handleAddToCart(detail.product_id)}
                                             type="primary" shape="round" icon={<ShoppingCartOutlined />} size="large">
-                                            Thêm vào giỏ hàng
-                                        </Button>
-                                        <Button type="primary" shape="round" icon={<ShoppingCartOutlined />} size="large">
-                                            Mua ngay
+                                            {lang === "en" ? "Add to cart" : "Thêm vào giỏ hàng"}
                                         </Button>
                                     </>
-
                                 }
                             </div>
                         </>
                     )
                 }
             </div>
+            <DetailInfo />
         </div >
     )
 }

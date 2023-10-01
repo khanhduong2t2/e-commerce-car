@@ -1,60 +1,91 @@
+import { connect } from 'react-redux';
 import React, { Component } from 'react';
 
-import Form from 'react-bootstrap/Form';
-class Auth extends Component {
-    state = {
-        isShowLogin: false,
-        isShowRegister: false,
-        isShowContainer: false
-    }
+import Dropdown from 'react-bootstrap/Dropdown';
+import DropdownButton from 'react-bootstrap/DropdownButton';
 
+import IconCart from '../Cart/IconCart.component';
+
+import { logout } from '../../Redux/Actions/AuthActions';
+import { SHOW_FORM_LOGIN, SHOW_FORM_REGISTER } from '../../Redux/Constants/AuthConstants';
+
+import Login from './Login.component';
+import Register from './Register.component';
+import ForgotPass from './ForgotPass.component';
+import { NavLink } from 'react-router-dom';
+
+class Auth extends Component {
     handleShowLogin = () => {
-        this.setState({ isShowLogin: true, isShowRegister: false, isShowContainer: true })
+        this.props.showFormLogin();
     }
 
     handleShowRegister = () => {
-        this.setState({ isShowLogin: false, isShowRegister: true, isShowContainer: true })
+        this.props.showFormRegister();
     }
 
-    handleCloseForm = (e) => {
-        if (e.target.className === "container-form") {
-            this.setState({ isShowLogin: false, isShowRegister: false, isShowContainer: false })
-        }
+    handleOnClickLogout = () => {
+        this.props.userLogoutAction();
     }
     render() {
-        let { isShowLogin, isShowRegister, isShowContainer } = this.state;
+        let { lang } = this.props.language;
+        let { showFormLogin, infoUser } = this.props.userLogin;
+        let { showFormRegister } = this.props.userRegister;
+        let { showFormForgot } = this.props.forgotPassword;
         return (
             <div id="login-logout">
-                <p className="login" onClick={() => this.handleShowLogin()}>Đăng nhập</p>
-                <p className="logout" onClick={() => this.handleShowRegister()}> Đăng kí</p>
-
                 {
-                    isShowContainer &&
-                    <div className="container-form" onClick={(e) => this.handleCloseForm(e)}>
-                        {
-                            isShowLogin &&
-                            <Form className="form-login">
-                                <input type="text" placeholder="Tên tài khoản" />
-                                <input type="password" placeholder="Mật khẩu"></input>
-                                <button type="button">Đăng nhập</button>
-                                <p>Đăng nhập bằng tài khoản email ?</p>
-                            </Form>
-                        }
-                        {
-                            isShowRegister &&
-                            <Form className="form-register">
-                                <input type="text" placeholder="Email đăng ký" />
-                                <input type="text" placeholder="Tên tài khoản" />
-                                <input type="password" placeholder="Mật khẩu"></input>
-                                <input type="password" placeholder="Xác nhận mật khẩu"></input>
-                                <button type="button">Đăng ký</button>
-                            </Form>
-                        }
-                    </div>
+                    infoUser && infoUser.username ?
+                        <>
+                            {/* <DropdownButton className="name-user" id="dropdown-basic-button" title={infoUser.username}> */}
+                            <DropdownButton className="name-user" title={infoUser.username}>
+                                <NavLink to="/change-info" activeclassname="active">
+                                    {lang === "en" ? "Change information" : "Thay đổi thông tin"}
+                                </NavLink>
+                                <NavLink to="/my-purchase" activeclassname="active">
+                                    {lang === "en" ? "My purchase" : "Đơn hàng"}
+                                </NavLink>
+                                <Dropdown.Item onClick={() => this.handleOnClickLogout()}>
+                                    {lang === "en" ? "Logout" : "Đăng xuất"}
+                                </Dropdown.Item>
+                            </DropdownButton>
+
+                            <IconCart id_user={infoUser.id}></IconCart>
+                        </>
+                        :
+                        <>
+                            <p className="login" onClick={() => this.handleShowLogin()}>Đăng nhập</p>
+                            <p className="signup" onClick={() => this.handleShowRegister()}>Đăng kí</p>
+                        </>
+                }
+                {
+                    showFormLogin && <Login></Login>
+                }
+                {
+                    showFormRegister && <Register></Register>
+                }
+                {
+                    showFormForgot && <ForgotPass></ForgotPass>
                 }
             </div >
         );
     }
 }
 
-export default Auth;
+const mapStateToProps = (state) => {
+    return {
+        language: state.language,
+        userLogin: state.userLogin,
+        userRegister: state.userRegister,
+        forgotPassword: state.forgotPassword,
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        userLogoutAction: () => dispatch(logout()),
+        showFormLogin: () => dispatch({ type: SHOW_FORM_LOGIN }),
+        showFormRegister: () => dispatch({ type: SHOW_FORM_REGISTER })
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Auth);

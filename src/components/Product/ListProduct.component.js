@@ -1,18 +1,18 @@
 // import axios from 'axios';
 import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-
+import Spinner from 'react-bootstrap/Spinner';
+import { MdOutlineFiberNew } from "react-icons/md";
+import { useDispatch, useSelector } from 'react-redux';
 import { formattedAmount } from '../../helpers/format_money';
 import { listProduct } from "../../Redux/Actions/ProductActions"
-import Spinner from 'react-bootstrap/Spinner';
 
 export default function ListProduct() {
     // let [listProduct, setListProduct] = useState([]);
 
     // useEffect(() => {
     //     const fetchData = async () => {
-    //         const { data } = await axios.get('http://localhost:8000/v1/eco/product/list-products')
+    //         const { data } = await axios.get('')
 
     //         if (data.status && data.data.length > 0) {
     //             setListProduct(data.data)
@@ -24,16 +24,18 @@ export default function ListProduct() {
     //----------------------------------------------------------------
     const dispatch = useDispatch();
 
-    const productList = useSelector((state) => state.productList)
+    const listProducts = useSelector((state) => state.listProducts)
+    const { loading, error, list_products } = listProducts;
 
-    const { loading, error, payload: products } = productList;
+    const language = useSelector((state) => state.language);
+    let { lang } = language;
 
     useEffect(() => {
         dispatch(listProduct())
     }, [dispatch])
 
     return (
-        < div id="container-list-products" >
+        < div id="container-list-products">
             {
                 loading ? (
                     <Spinner animation="border" variant="primary" />
@@ -42,8 +44,8 @@ export default function ListProduct() {
                 ) : (
                     <>
                         {
-                            products && products.length > 0 &&
-                            products.map((item, index) => {
+                            list_products && list_products.length > 0 &&
+                            list_products.map((item, index) => {
                                 return (
                                     <div key={item._id}>
                                         <h2>{item._id}</h2>
@@ -52,11 +54,12 @@ export default function ListProduct() {
                                                 item.list_item.length > 0 &&
                                                 item.list_item.map((item, index) => {
                                                     return (
-                                                        <Link to={`/detail-product/${item.slug}`} className="item-product" key={item.slug}>
+                                                        <Link to={`/detail-product/${item.product_id}`} className="item-product" key={item.product_id}>
                                                             <div>
                                                                 <img src={item.link_image[0]} alt="itemImage" />
+                                                                {item.status === "new" && <MdOutlineFiberNew className="icon-new" />}
                                                                 <p className="name-item">{item.name}</p>
-                                                                <p className="price-item">Giá từ: {formattedAmount(item.price)}</p>
+                                                                <p className="price-item">{lang === "en" ? "Price: " : "Giá từ: "} {formattedAmount(item.price)}</p>
                                                             </div>
                                                         </Link>
                                                     )
@@ -70,37 +73,6 @@ export default function ListProduct() {
                     </>
                 )
             }
-
-            {/* <div>
-                <h2>VinFast</h2>
-                <div className="container-brand">
-                    <div className="item-product">
-                        <img src="https://vietnam-mercedes.com.vn/wp-content/uploads/2021/12/Mercedes-Benz-G-63-g1-1.png" alt="itemImage" />
-                        <p className="name-item">Mercedes AMG G63</p>
-                        <p className="price-item">Giá từ: 7.000.000.000</p>
-                    </div>
-                    <div className="item-product">
-                        <img src="https://vietnam-mercedes.com.vn/wp-content/uploads/2021/12/Mercedes-Benz-G-63-g1-1.png" alt="itemImage" />
-                        <p className="name-item">Mercedes AMG G63</p>
-                        <p className="price-item">Giá từ: 7.000.000.000</p>
-                    </div>
-                    <div className="item-product">
-                        <img src="https://vietnam-mercedes.com.vn/wp-content/uploads/2021/12/Mercedes-Benz-G-63-g1-1.png" alt="itemImage" />
-                        <p className="name-item">Mercedes AMG G63</p>
-                        <p className="price-item">Giá từ: 7.000.000.000</p>
-                    </div>
-                    <div className="item-product">
-                        <img src="https://vietnam-mercedes.com.vn/wp-content/uploads/2021/12/Mercedes-Benz-G-63-g1-1.png" alt="itemImage" />
-                        <p className="name-item">Mercedes AMG G63</p>
-                        <p className="price-item">Giá từ: 7.000.000.000</p>
-                    </div>
-                    <div className="item-product">
-                        <img src="https://vietnam-mercedes.com.vn/wp-content/uploads/2021/12/Mercedes-Benz-G-63-g1-1.png" alt="itemImage" />
-                        <p className="name-item">Mercedes AMG G63</p>
-                        <p className="price-item">Giá từ: 7.000.000.000</p>
-                    </div>
-                </div>
-            </div> */}
         </div >
     )
 }

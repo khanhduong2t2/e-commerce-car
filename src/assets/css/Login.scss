@@ -1,0 +1,194 @@
+$font-family : Arial,
+Helvetica,
+sans-serif;
+
+.container-form {
+    position: fixed;
+    top     : 0;
+    left    : 0;
+    width   : 100%;
+    height  : 100%;
+
+    display         : flex;
+    z-index         : 9999;
+    align-items     : center;
+    justify-content : center;
+    background-color: rgb(0 0 0 / 80%);
+
+    form {
+        position : absolute;
+        top      : 50%;
+        left     : 50%;
+        transform: translate(-50%, -50%);
+
+        outline       : none;
+        letter-spacing: 0.5px;
+        width         : 460px;
+        padding       : 50px 35px;
+
+        border-radius         : 30px;
+        border                : 2px solid rgb(255, 255, 255);
+        background-size       : cover;
+        background-image      : url("https://firebasestorage.googleapis.com/v0/b/save-portfolio.appspot.com/o/portfolio%2Flight-car.jpg?alt=media&token=37abcdc5-96c8-4508-ab6d-e0ea95b351ed");
+        // background-position: center center;
+        background-position   : -7px 77px;
+
+        h3 {
+            font-size  : 34px;
+            font-weight: 700;
+            line-height: 3;
+            color      : #e8e8e8;
+        }
+
+        label {
+            display    : block;
+            position   : relative;
+            margin-top : 29px;
+            font-size  : 17px;
+            font-weight: 500;
+            color      : white;
+
+            i {
+                font-size  : 15px;
+                position   : absolute;
+                width      : 300px;
+                left       : 107%;
+                top        : 100%;
+                margin-left: 30px;
+            }
+        }
+
+        input {
+            display: block;
+            height : 50px;
+            width  : 100%;
+
+            outline   : none;
+            margin-top: 8px;
+            font-size : 18px;
+            padding   : 0 17px;
+            color     : white;
+
+            border-radius   : 25px;
+            border          : 3px solid #e8e8e8;
+            background-color: rgb(255 255 255 / 3%);
+
+            ::placeholder {
+                color      : #ffffff;
+                font-family: $font-family;
+            }
+        }
+
+
+        button {
+            height       : 57px;
+            width        : 100%;
+            border-radius: 35px;
+            color        : #ffffff;
+            border       : 3px solid #ffffff;
+
+            font-weight  : 600;
+            font-size    : 18px;
+            margin-top   : 50px;
+            margin-bottom: 30px;
+            padding      : 15px 0;
+
+            // background         : linear-gradient(to right, #010101 0%, #696969 50%, #00aaff00 50%, #00aaff00 100%);
+            background-color      : #000000cd;
+            background-size       : 200% 100%;
+            background-position   : right center;
+            // transition         : background-position 0.3s ease;
+            transition            : all 1s ease;
+        }
+
+        button:hover {
+            cursor             : pointer;
+            background-color   : #00000000;
+            background-position: left center;
+        }
+
+        .text-forgot {
+            font-size: 18px;
+            color    : white;
+
+            :hover {
+                cursor: pointer;
+            }
+        }
+    }
+
+    .form-register {
+        background-image   : url("https://firebasestorage.googleapis.com/v0/b/save-portfolio.appspot.com/o/portfolio%2Froad2.png?alt=media&token=0f08e4bb-360b-442b-84b3-b6dbc60fc9b9") !important;
+        background-position: -7px -26px !important;
+
+        button {
+            background-color: #00000000 !important;
+        }
+
+        button:hover {
+            box-shadow: rgb(255 255 255 / 56%) 0px 30px 60px -12px inset, #ff000000 0px 18px 36px -18px inset !important;
+        }
+    }
+
+    .form-register::before {
+        content         : "";
+        position        : absolute;
+        top             : 0;
+        left            : 0;
+        right           : 0;
+        bottom          : 0;
+        background-image: linear-gradient(to top, transparent, rgb(0 0 0 / 36%), rgb(0, 0, 0), rgb(0 0 0 / 62%));
+        filter          : blur(10px);
+        z-index         : -1;
+    }
+
+    .error-login,
+    .error-email,
+    .error-username,
+    .error-password,
+    .error-confirmPassword {
+        background-color: rgb(70 68 68);
+        color           : white;
+        position        : absolute;
+        padding         : 8px;
+        border-radius   : 25px;
+    }
+
+    .error-login {
+        top : 25%;
+        left: 61.5%;
+    }
+
+    .error-email {
+        top : 29%;
+        left: 61.5%;
+    }
+
+    .error-username {
+        top : 40%;
+        left: 61.5%;
+    }
+
+    .error-password {
+        top : 52%;
+        left: 61.5%;
+    }
+
+    .error-confirmPassword {
+        top : 63%;
+        left: 61.5%;
+    }
+
+    p {
+        margin  : 0;
+        position: relative;
+    }
+
+    .iconChat {
+        color    : rgb(70 68 68);
+        position : absolute;
+        font-size: 39px;
+        top      : 3px;
+        left     : 0px;
+    }
+}

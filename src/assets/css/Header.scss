@@ -1,0 +1,316 @@
+$font-family : Arial,
+Helvetica,
+sans-serif;
+
+#header-container {
+    display        : flex;
+    justify-content: center;
+
+    width           : 100%;
+    height          : 97px;
+    padding         : 10px 0px;
+    background-color: #020102;
+
+    position: fixed;
+    top     : 0;
+    left    : 0;
+    z-index : 1000;
+
+    #dropdown-basic-button {
+        display: none;
+    }
+
+    #logo {
+        display     : flex;
+        align-items : center;
+        margin-right: 20px;
+    }
+
+    #list-menu {
+        display: flex;
+        width  : 42vw;
+        margin : 0px;
+        padding: 0px;
+
+        list-style     : none;
+        justify-content: left;
+        white-space    : nowrap;
+        align-items    : center;
+
+        .item-menu {
+            font-family: $font-family;
+            font-size  : 17px;
+            font-weight: bold;
+
+            height      : 72%;
+            line-height : 56px;
+            margin-right: 2%;
+            margin-left : 5%;
+
+            .item-link {
+                display        : inline-block;
+                color          : #ffffff;
+                text-decoration: none;
+                padding        : 0px 20px;
+                width          : 100% !important;
+
+                span {
+                    transition: box-shadow 0.4s ease;
+                }
+            }
+        }
+
+        .item-menu:hover {
+            cursor    : pointer;
+            transform : translateY(-2px);
+            transition: transform 0.5s;
+        }
+
+        // .item-menu:hover span {
+        //     border-radius: 20%;
+        //     box-shadow   : rgb(255 252 252 / 50%) 0px 10px 15px -3px, rgb(237 233 233 / 100%) 0px 4px 6px -2px;
+        // }
+
+        .have-drop {
+            position: relative;
+            z-index : 5;
+
+            &:hover>#list-drop-brand {
+                display: block;
+            }
+        }
+
+        #list-drop-brand {
+            display   : none;
+            list-style: none;
+
+            position: absolute;
+            top     : 100%;
+            left    : 2%;
+
+            width           : 167px;
+            padding         : 0px;
+            border-radius   : 5px;
+            background-color: #fff;
+            box-shadow      : rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+
+            .item-brand {
+                .brand-link {
+                    display        : inline-block;
+                    text-decoration: none;
+                    color          : #686767;
+                    padding        : 0px 15%;
+                    height         : 100%;
+                    width          : 100%;
+                }
+
+                .brand-link:hover {
+                    color     : #272727;
+                    transition: 0.5s;
+                }
+            }
+
+            .item-brand:first-child {
+                border-radius: 5px 5px 0px 0px;
+            }
+
+            .item-brand:first-child .brand-link {
+                border-radius: 5px 5px 0px 0px;
+            }
+
+            .item-brand:last-child {
+                border-radius: 0px 0px 5px 5px;
+            }
+
+            .item-brand:last-child .brand-link {
+                border-radius: 0px 0px 5px 5px;
+            }
+        }
+    }
+
+    #login-logout {
+        display    : flex;
+        height     : 100%;
+        align-items: center;
+
+        .login {
+            font-weight: bold;
+            height     : 75%;
+            line-height: 55px;
+            color      : white;
+            margin     : 0px 20px;
+        }
+
+        .signup {
+            height     : 75%;
+            line-height: 55px;
+            margin     : 0px;
+            padding    : 0px 20px;
+
+            font-weight  : bold;
+            color        : #fff;
+            border-radius: 5px;
+            border       : 1px solid white;
+        }
+
+        .login:hover {
+            cursor         : pointer;
+            text-decoration: underline;
+        }
+
+        .signup:hover {
+            cursor    : pointer;
+            transform : translateY(-2px);
+            transition: transform 0.5s;
+            box-shadow: rgba(46, 117, 240, 0.4) 0px 5px, rgba(46, 107, 240, 0.3) 0px 10px;
+        }
+
+        .name-user {
+            margin-left: 20px;
+
+            .dropdown-toggle {
+                background-color: #020102;
+                border          : 2px solid #fff;
+            }
+
+            .dropdown-menu {
+                padding: 0;
+                width  : 122%;
+            }
+
+            a {
+                display        : inline-block;
+                padding        : 10px 20px;
+                text-decoration: none;
+                height         : 100%;
+                width          : 100%;
+                color          : #403f3f;
+            }
+
+            a:hover {
+                border-radius: 15px;
+                font-weight  : 400;
+                color        : #070707;
+            }
+        }
+
+        .icon-cart {
+            font-size  : 27px;
+            margin-left: 20px;
+            color      : white;
+        }
+    }
+
+    #languages {
+        display    : flex;
+        height     : 100%;
+        margin-left: 2%;
+        width      : 25px;
+        align-items: center;
+        color      : white;
+
+        p {
+            margin : 0;
+            padding: 0;
+        }
+
+        p {
+            cursor: pointer;
+        }
+    }
+}
+
+
+@media (max-width: 600px) {
+    #header-container {
+        height         : 77px;
+        padding        : 10px 37px;
+        justify-content: space-between;
+
+        img {
+            width: 99px;
+        }
+
+        #list-menu {
+            display: none;
+        }
+
+        #search-header,
+        #login-logout,
+        #languages {
+            display: none;
+        }
+
+        #dropdown-basic-button {
+            background-image   : url("https://firebasestorage.googleapis.com/v0/b/save-portfolio.appspot.com/o/portfolio%2F3line.png?alt=media&token=ef8c102c-4009-4c87-9fae-6a176ddbc9eb");
+            background-color   : #020102;
+            background-size    : cover;
+            background-position: center;
+            border             : none;
+            display            : block;
+        }
+
+        .dropdown-toggle::after {
+            display    : inline-block;
+            margin-left: 0.255em;
+            padding    : 8px 8px;
+
+            border-top   : none;
+            border-right : none;
+            border-bottom: none;
+            border-left  : none;
+            outline      : none;
+            content      : "";
+        }
+
+        .dropdown {
+            padding: 9px 0px;
+
+            .dropdown-menu.show {
+                width        : 140vw;
+                border-radius: 0px;
+                padding      : 0;
+
+                .item-link {
+                    padding             : 14px 20px;
+                    font-weight         : 500;
+                    text-decoration-line: none;
+                    font-size           : 19px;
+                    color               : #1A1A1A;
+                }
+
+                .item-link:active {
+                    background-color: #d4d4d4;
+                }
+
+                .item-link-drop {
+                    position: relative;
+
+                    #list-drop-brand {
+                        position  : absolute;
+                        list-style: none;
+                        left      : 0;
+                        top       : 55px;
+
+                        padding         : 0;
+                        width           : 100%;
+                        background-color: #2a2a2a;
+
+                        .item-brand {
+                            padding: 10px 35px;
+
+                            .brand-link {
+                                text-decoration: none;
+                                color          : white;
+                            }
+                        }
+
+                        .item-brand:active {
+                            background-color: #b4b4b4;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

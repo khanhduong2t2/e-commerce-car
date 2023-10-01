@@ -5,6 +5,9 @@
 /.pnp
 .pnp.js
 
+#API
+/src/Redux/Actions/API
+
 # testing
 /coverage
 
