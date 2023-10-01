@@ -53,8 +53,8 @@ class Auth extends Component {
                         </>
                         :
                         <>
-                            <p className="login" onClick={() => this.handleShowLogin()}>Đăng nhập</p>
-                            <p className="signup" onClick={() => this.handleShowRegister()}>Đăng kí</p>
+                            <p className="login" onClick={() => this.handleShowLogin()}>{lang === "en" ? "Sign in" : "Đăng nhập"}</p>
+                            <p className="signup" onClick={() => this.handleShowRegister()}>{lang === "en" ? "Sign up" : "Đăng kí"}</p>
                         </>
                 }
                 {

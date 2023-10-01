@@ -13,6 +13,9 @@ export default function Register() {
     let [password, setPassword] = useState('');
     let [confirmPassword, setConfirmPassword] = useState('');
 
+    const language = useSelector(state => state.language);
+    let { lang } = language;
+
     const userRegister = useSelector(state => state.userRegister);
     let { showFormRegister, errMessage } = userRegister;
 
@@ -63,7 +66,7 @@ export default function Register() {
                 type: SET_ERROR_REGISTER,
                 payload: {
                     type: 'email',
-                    message: 'Vui lòng nhập email !',
+                    message: lang === "en" ? 'Please enter email!' : 'Vui lòng nhập email !',
                     typeError: 1
                 }
             })
@@ -74,7 +77,7 @@ export default function Register() {
                 type: SET_ERROR_REGISTER,
                 payload: {
                     type: 'email',
-                    message: 'Email không hợp lệ !',
+                    message: lang === "en" ? 'Invalid email !' : 'Email không hợp lệ !',
                     typeError: 1
                 }
             })
@@ -87,7 +90,7 @@ export default function Register() {
                 type: SET_ERROR_REGISTER,
                 payload: {
                     type: 'username',
-                    message: 'Vui lòng nhập tên tài khoản !',
+                    message: lang === "en" ? 'Please enter your account name !' : 'Vui lòng nhập tên tài khoản !',
                     typeError: 2
                 }
             })
@@ -98,7 +101,8 @@ export default function Register() {
                 type: SET_ERROR_REGISTER,
                 payload: {
                     type: 'username',
-                    message: 'Tên tài khoản phải hơn 6 kí tự, không chứa khoảng trắng !',
+                    message: lang === "en" ?
+                        'Account name must be more than 6 characters, contain no spaces!' : 'Tên tài khoản phải hơn 6 kí tự, không chứa khoảng trắng !',
                     typeError: 2
                 }
             })
@@ -111,7 +115,7 @@ export default function Register() {
                 type: SET_ERROR_REGISTER,
                 payload: {
                     type: 'password',
-                    message: `Mật khẩu phải gồm kí tự: Hoa, thường và số !`,
+                    message: lang === "en" ? `Password must contain characters: Uppercase, lowercase and numbers!` : `Mật khẩu phải gồm kí tự: Hoa, thường và số !`,
                     typeError: 3
                 }
             })
@@ -122,7 +126,7 @@ export default function Register() {
                 type: SET_ERROR_REGISTER,
                 payload: {
                     type: 'password',
-                    message: 'Vui lòng nhập mật khẩu !',
+                    message: lang === "en" ? 'Please enter a password !' : 'Vui lòng nhập mật khẩu !',
                     typeError: 3
                 }
             })
@@ -135,7 +139,7 @@ export default function Register() {
                 type: SET_ERROR_REGISTER,
                 payload: {
                     type: 'confirmPassword',
-                    message: 'Mật khẩu xác thực không hợp lệ !',
+                    message: lang === "en" ? 'Invalid authentication password!' : 'Mật khẩu xác thực không hợp lệ !',
                     typeError: 4
                 }
             })
@@ -146,7 +150,7 @@ export default function Register() {
                 type: SET_ERROR_REGISTER,
                 payload: {
                     type: 'confirmPassword',
-                    message: 'Vui lòng nhập mật khẩu xác thực !',
+                    message: lang === "en" ? 'Please enter authentication password!' : 'Vui lòng nhập mật khẩu xác thực !',
                     typeError: 4
                 }
             })
@@ -171,7 +175,7 @@ export default function Register() {
                 showFormRegister &&
                 <div className="container-form" onClick={(e) => handleCloseForm(e)}>
                     <Form className="form-register">
-                        <h3>Đăng ký</h3>
+                        <h3>{lang === 'en' ? 'Sign up' : 'Đăng ký'}</h3>
                         <label htmlFor="email">
                             <span>Email</span>
                             {
@@ -189,9 +193,10 @@ export default function Register() {
                         </label>
                         <input id="email" defaultValue={email} onChange={(e) => handleChangeInput(e, 'email')}
                             onFocus={() => handleOnBlur('email')}
-                            type="text" placeholder="Email đăng ký" />
+                            type="text" placeholder={lang === "en" ?
+                                "Email registration" : "Email đăng ký"} />
                         <label htmlFor="username">
-                            <span>Tên tài khoản</span>
+                            <span>{lang === "en" ? "Username" : "Tên tài khoản"}</span>
                             {
                                 errMessage && errMessage.length > 0 &&
                                 errMessage.map((item, index) => {
@@ -207,9 +212,9 @@ export default function Register() {
                         </label>
                         <input id="username" defaultValue={username} onChange={(e) => handleChangeInput(e, 'username')}
                             onFocus={() => handleOnBlur('username')}
-                            type="text" placeholder="Tên tài khoản" />
+                            type="text" placeholder={lang === "en" ? "Username" : "Tên tài khoản"} />
                         <label htmlFor="password">
-                            <span>Mật khẩu</span>
+                            <span>{lang === "en" ? "Password" : "Mật khẩu"}</span>
                             {
                                 errMessage && errMessage.length > 0 &&
                                 errMessage.map((item, index) => {
@@ -225,9 +230,9 @@ export default function Register() {
                         </label>
                         <input id="password" defaultValue={password} onChange={(e) => handleChangeInput(e, 'password')}
                             onFocus={() => handleOnBlur('password')}
-                            type="password" placeholder="Mật khẩu"></input>
+                            type="password" placeholder={lang === "en" ? "Password" : "Mật khẩu"}></input>
                         <label htmlFor="confirmPassword">
-                            <span>Nhập lại mật khẩu</span>
+                            <span>{lang === "en" ? "Confirm password" : "Nhập lại mật khẩu"}</span>
                             {
                                 errMessage && errMessage.length > 0 &&
                                 errMessage.map((item, index) => {
@@ -243,9 +248,9 @@ export default function Register() {
                         </label>
                         <input id="confirmPassword" defaultValue={confirmPassword} onChange={(e) => handleChangeInput(e, 'confirmPassword')}
                             onFocus={() => handleOnBlur('confirmPassword')}
-                            type="password" placeholder="Xác nhận mật khẩu"></input>
+                            type="password" placeholder={lang === "en" ? "Confirm password" : "Xác nhận mật khẩu"}></input>
                         <button onClick={() => handleOnClickRegister()}
-                            type="button" className="btn-register">Đăng ký</button>
+                            type="button" className="btn-register">{lang === "en" ? "Sign up" : "Đăng ký"}</button>
                     </Form>
                 </div>
             }
