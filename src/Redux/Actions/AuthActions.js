@@ -2,7 +2,7 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 import { listAPIs } from './API/ListAPIs';
 import {
-    CLOSE_FORM_FORGOT, CLOSE_FORM_LOGIN, SEND_FORGOT_FAIL, SEND_FORGOT_REQUEST, SEND_FORGOT_SUCCESS, USER_LOGIN_FAIL,
+    CLOSE_FORM_FORGOT, CLOSE_FORM_LOGIN, CLOSE_FORM_REGISTER, SEND_FORGOT_FAIL, SEND_FORGOT_REQUEST, SEND_FORGOT_SUCCESS, USER_LOGIN_FAIL,
     USER_LOGIN_REQUEST, USER_LOGIN_SUCCESS, USER_LOGOUT, USER_REGISTER_FAIL, USER_REGISTER_REQUEST, USER_REGISTER_SUCCESS
 } from '../Constants/AuthConstants';
 export const login = (username, password) => async (dispatch) => {
@@ -91,6 +91,7 @@ export const register = (email, username, password, confirmPassword) => async (d
                 type: USER_REGISTER_SUCCESS,
                 payload: data
             })
+            dispatch({ type: CLOSE_FORM_REGISTER })
             toast.success('Đăng ký thành công! Vui lòng xác thực email của bạn')
         } else {
             dispatch({
