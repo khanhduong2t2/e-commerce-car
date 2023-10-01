@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-
 import { Form } from 'react-bootstrap';
+import Spinner from 'react-bootstrap/Spinner';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { login } from '../../Redux/Actions/AuthActions';
@@ -18,7 +18,7 @@ export default function Login() {
     let content = lang === "en" ? textLanguage.EN : textLanguage.VI;
 
     const userLogin = useSelector(state => state.userLogin)
-    let { showFormLogin, errMessage, typeError } = userLogin;
+    let { showFormLogin, errMessage, typeError, isLoading } = userLogin;
 
     const handleChangeInput = (e, type) => {
         switch (type) {
@@ -95,8 +95,14 @@ export default function Login() {
                             onChange={(e) => handleChangeInput(e, 'password')}
                             onFocus={() => onClearError()}
                             type="password" placeholder={content.label_password}></input>
-                        <button onClick={() => handleOnClickLogin()}
-                            type="button">{content.login}</button>
+                        {isLoading ?
+                            <div style={{ "width": "100%", "display": "flex", "justifyContent": "center", "marginTop": "55px", "marginBottom": "50px" }}>
+                                <Spinner animation="border" variant="primary" />
+                            </div>
+                            :
+                            <button onClick={() => handleOnClickLogin()}
+                                type="button">{content.login}</button>
+                        }
                         <p className="text-forgot" onClick={() => handleShowForgot()}>{content.forgot_password}</p>
                     </Form>
                 </div>

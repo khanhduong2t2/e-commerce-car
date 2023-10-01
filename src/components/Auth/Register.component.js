@@ -249,8 +249,11 @@ export default function Register() {
                         <input id="confirmPassword" defaultValue={confirmPassword} onChange={(e) => handleChangeInput(e, 'confirmPassword')}
                             onFocus={() => handleOnBlur('confirmPassword')}
                             type="password" placeholder={lang === "en" ? "Confirm password" : "Xác nhận mật khẩu"}></input>
+
                         {isLoading ?
-                            <Spinner animation="border" variant="primary" />
+                            <div style={{ "width": "100%", "display": "flex", "justifyContent": "center", "marginTop": "20px" }}>
+                                <Spinner animation="border" variant="primary" />
+                            </div>
                             :
                             <button onClick={() => handleOnClickRegister()}
                                 type="button" className="btn-register">{lang === "en" ? "Sign up" : "Đăng ký"}</button>
