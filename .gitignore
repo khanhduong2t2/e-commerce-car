@@ -6,7 +6,7 @@
 .pnp.js
 
 #API
-/src/Redux/Actions/API
+# /src/Redux/Actions/API
 
 # testing
 /coverage
