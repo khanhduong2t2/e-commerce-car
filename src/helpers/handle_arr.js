@@ -1,15 +1,3 @@
-const convertToArrObject = (arr) => {
-    let newArr = [];
-
-    arr.forEach((item, index) => {
-        newArr.push({
-            index: index,
-            image: item
-        })
-    })
-    return newArr
-}
-
 const getNextItem = (index, array) => {
     let nextItem = array.find(item => item.index === index + 1);
     return nextItem ? nextItem : array[0]
@@ -34,6 +22,17 @@ const getNewArrSupport = (index, arrSup, arrObj) => {
     return newArrSup;
 }
 
+const convertToArrObject = (arr) => {
+    let newArr = [];
+
+    arr.forEach((item, index) => {
+        newArr.push({
+            index: index,
+            image: item
+        })
+    })
+    return newArr
+}
 module.exports = {
     getNextItem,
     getNewArrSupport,

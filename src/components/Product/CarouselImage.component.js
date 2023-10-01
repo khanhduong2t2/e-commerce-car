@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import Carousel from 'react-bootstrap/Carousel';
-import { convertToArrObject, getNewArrSupport } from '../../util/hanldeArr';
+import { convertToArrObject, getNewArrSupport } from '../../helpers/handle_arr';
 
 export default function CarouselImage() {
     const productDetails = useSelector(state => state.productDetails)
