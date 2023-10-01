@@ -1,13 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import Carousel from 'react-bootstrap/Carousel';
-import { convertToArrObject, getNextItem } from '../../helpers/handle_arr';
+import { convertToArrObject } from '../../helpers/handle_arr';
 
 export default function CarouselImage() {
     const productDetails = useSelector(state => state.productDetails)
     let { detail } = productDetails;
 
     const [indexShow, setIndexShow] = useState(0);
+
+    const getNextItem = (index, array) => {
+        let nextItem = array.find(item => item.index === index + 1);
+        return nextItem ? nextItem : array[0]
+    }
 
     const getNewArrSupport = (index, arrSup, arrObj) => {
         let checkExists = arrSup.find(item => item.index === index);
