@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Form } from 'react-bootstrap';
+import Spinner from 'react-bootstrap/Spinner';
 import { useDispatch, useSelector } from 'react-redux';
-
 import { register } from '../../Redux/Actions/AuthActions';
 import { CLOSE_FORM_REGISTER, REMOVE_ERROR_REGISTER, SET_ERROR_REGISTER } from '../../Redux/Constants/AuthConstants';
 
@@ -17,7 +17,7 @@ export default function Register() {
     let { lang } = language;
 
     const userRegister = useSelector(state => state.userRegister);
-    let { showFormRegister, errMessage } = userRegister;
+    let { showFormRegister, errMessage, isLoading } = userRegister;
 
     const handleChangeInput = (e, type) => {
         switch (type) {
@@ -249,8 +249,12 @@ export default function Register() {
                         <input id="confirmPassword" defaultValue={confirmPassword} onChange={(e) => handleChangeInput(e, 'confirmPassword')}
                             onFocus={() => handleOnBlur('confirmPassword')}
                             type="password" placeholder={lang === "en" ? "Confirm password" : "Xác nhận mật khẩu"}></input>
-                        <button onClick={() => handleOnClickRegister()}
-                            type="button" className="btn-register">{lang === "en" ? "Sign up" : "Đăng ký"}</button>
+                        {isLoading ?
+                            <Spinner animation="border" variant="primary" />
+                            :
+                            <button onClick={() => handleOnClickRegister()}
+                                type="button" className="btn-register">{lang === "en" ? "Sign up" : "Đăng ký"}</button>
+                        }
                     </Form>
                 </div>
             }
