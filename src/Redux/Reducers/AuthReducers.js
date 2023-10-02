@@ -31,7 +31,7 @@ export const userLoginReducer = (state = {}, action) => {
             return {
                 ...state,
                 isLoading: false,
-                errMessage: "Tài khoản hoặc mật khẩu chưa đúng!",
+                errMessage: action.payload.lang === "en" ? "Your account or password is incorrect!" : "Tài khoản hoặc mật khẩu chưa đúng !",
                 typeError: 1
             }
 

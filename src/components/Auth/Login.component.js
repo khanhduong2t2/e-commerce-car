@@ -39,19 +39,19 @@ export default function Login() {
         if (!username) {
             dispatch({
                 type: SET_ERROR_LOGIN, payload: {
-                    message: "Vui lòng điền đầy đủ thông tin !",
+                    message: content.require_username,
                     typeError: 1
                 }
             })
         } else if (!password) {
             dispatch({
                 type: SET_ERROR_LOGIN, payload: {
-                    message: "Vui lòng điền đầy đủ thông tin !",
+                    message: content.require_password,
                     typeError: 2
                 }
             })
         } else {
-            dispatch(login(username, password))
+            dispatch(login(username, password, lang))
         }
     }
 

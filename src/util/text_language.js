@@ -3,7 +3,7 @@ const textLanguage = {
         title_login: "Đăng nhập",
         title_signup: "Đăng kí",
         label_account: "Tài khoản",
-        textarea_account: "Tài khoản hoặc email",
+        textarea_account: "Tên tài khoản",
         label_password: "Mật khẩu",
         btn_login: "Đăng nhập",
         btn_signup: "Đăng ký",
@@ -29,7 +29,7 @@ const textLanguage = {
         title_login: "Sign in to",
         title_signup: "Sign up to",
         label_account: "Username",
-        textarea_account: "Username or email",
+        textarea_account: "Username",
         label_password: "Password",
         btn_login: "Login",
         btn_signup: "Sign up",
@@ -40,10 +40,9 @@ const textLanguage = {
         holder_password: "Password",
         holder_confirm_pw: "Confirm password",
 
-
         require_email: "Please enter email !",
-        require_username: "Please enter your account name !",
-        require_password: "Please enter a password !",
+        require_username: "Please enter your username !",
+        require_password: "Please enter your password !",
         require_confirm_pw: "Please enter confirm password !",
 
         invalid_email: "Invalid email !",
