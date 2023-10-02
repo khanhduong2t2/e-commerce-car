@@ -101,7 +101,7 @@ export default function Login() {
                             </div>
                             :
                             <button onClick={() => handleOnClickLogin()}
-                                type="button">{content.login}</button>
+                                type="button">{content.btn_login}</button>
                         }
                         <p className="text-forgot" onClick={() => handleShowForgot()}>{content.forgot_password}</p>
                     </Form>

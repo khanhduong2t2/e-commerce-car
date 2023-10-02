@@ -72,13 +72,14 @@ export const logout = () => (dispatch) => {
     document.cookie = `refreshToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
 }
 
-export const register = (email, username, password, confirmPassword) => async (dispatch) => {
+export const register = (email, username, password, confirmPassword, lang) => async (dispatch) => {
     try {
         dispatch({ type: USER_REGISTER_REQUEST });
 
         const config = {
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                "lang": lang
             }
         }
 
@@ -92,7 +93,12 @@ export const register = (email, username, password, confirmPassword) => async (d
                 payload: data
             })
             dispatch({ type: CLOSE_FORM_REGISTER })
-            toast.success('Đăng ký thành công! Vui lòng xác thực email của bạn')
+            toast.success(
+                lang === "en" ?
+                    'Sign up Success ! Please verify your email'
+                    :
+                    'Đăng ký thành công ! Vui lòng xác thực email của bạn'
+            )
         } else {
             dispatch({
                 type: USER_REGISTER_FAIL,
