@@ -1,4 +1,4 @@
-import { GET_PROMOTION_FAIL, GET_PROMOTION_REQUEST, GET_PROMOTION_SUCCESS } from "../Constants/PromotionContants"
+import { GET_PROMOTION_FAIL, GET_PROMOTION_REQUEST, GET_PROMOTION_SUCCESS } from "../Constants/PromotionConstants"
 
 export const listPromotionsReducer = (state = {}, action) => {
     switch (action.type) {

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import Form from 'react-bootstrap/Form';
@@ -9,13 +9,18 @@ import InputGroup from 'react-bootstrap/InputGroup';
 
 import { searchProduct } from '../../Redux/Actions/SearchActions';
 
-export default function FormSearch() {
+export default function FormSearch(props) {
     const dispatch = useDispatch();
+
+    const listResult = useRef();
 
     let [showResults, setShowResults] = useState(false);
 
     const language = useSelector(state => state.language);
     let { lang } = language
+
+    const searchProductReducer = useSelector((state) => state.searchProduct)
+    const { list_results } = searchProductReducer;
 
     const handleChangeInputSearch = (e) => {
         const value = e.target.value;
@@ -28,25 +33,83 @@ export default function FormSearch() {
         }
     }
 
-    const searchProductReducer = useSelector((state) => state.searchProduct)
-    const { list_results } = searchProductReducer;
+    //Xử lý hide/show Form Search
+    const [widthSearch, setWidthSearch] = useState(25);
+    const [turnSearch, setTurnSearch] = useState(false);
+    const [showingSearch, setShowingSearch] = useState(false);
+    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
+    const handleClickIconSearch = () => {
+        if (windowWidth <= 1600) {
+            setTurnSearch(!turnSearch);
+
+            let element = listResult.current;
+            const computedStyle = window.getComputedStyle(element);
+            let displayStyle = computedStyle.getPropertyValue('display');
+            element.style.display = displayStyle === "none" ? "block" : "none";
+
+            if (element.style.display === "block") {
+                setShowingSearch(true)
+                setWidthSearch(60)
+                props.getWidthListMenu(15)
+            } else {
+                setShowingSearch(false)
+                setWidthSearch(5)
+                props.getWidthListMenu(70)
+            }
+        }
+    }
+
+    useEffect(() => {
+        const handleResize = () => {
+            setWindowWidth(window.innerWidth);
+        };
+        window.addEventListener('resize', handleResize);
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
+
+    useEffect(() => {
+        let element = listResult.current;
+        if (windowWidth <= 1600) {
+            if (!turnSearch) {
+                element.style.display = "none";
+                setShowingSearch(false);
+
+                setWidthSearch(5);
+                props.getWidthListMenu(70);
+            }
+        } else {
+            setTurnSearch(false);
+            setShowingSearch(true);
+            element.style.display = "block";
+
+            setWidthSearch(25);
+            props.getWidthListMenu(50);
+        }
+    }, [windowWidth, turnSearch, props])
+    //-end
     return (
         <>
-            <InputGroup id="search-header" className="mb-5">
+            {/* className="mb-5" */}
+            <InputGroup id="search-header" style={{ "width": widthSearch + "%" }}>
                 <Form.Control
                     placeholder={lang === "en" ? "Search cars" : "Tìm kiếm xe"}
                     aria-label="Car's type"
                     aria-describedby="basic-addon2"
                     className="search-form"
-
                     onChange={(e) => handleChangeInputSearch(e)}
+                    ref={listResult}
                 />
-                <InputGroup.Text className="icon-search"><BiSearch /></InputGroup.Text>
+                <InputGroup.Text className="icon-search"
+                    onClick={() => handleClickIconSearch()}
+                >
+                    <BiSearch /></InputGroup.Text>
 
                 {
-                    (showResults && list_results && list_results.length) ?
-                        <ul id="list-result-search">
+                    (showingSearch && showResults && list_results && list_results.length) ?
+                        <ul id="list-result-search" >
                             {
                                 list_results.map((item) => {
                                     return (

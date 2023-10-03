@@ -8,7 +8,7 @@ sans-serif;
 
     width           : 100%;
     height          : 97px;
-    padding         : 10px 0px;
+    padding         : 10px 6%;
     background-color: #020102;
 
     position: fixed;
@@ -21,31 +21,35 @@ sans-serif;
     }
 
     #logo {
+        width       : 8%;
+        margin-right: 20px;
         display     : flex;
         align-items : center;
-        margin-right: 20px;
+        min-width   : 129px;
     }
 
     #list-menu {
         display: flex;
-        width  : 42vw;
+        width  : 50%;
         margin : 0px;
         padding: 0px;
 
-        list-style     : none;
-        justify-content: left;
-        white-space    : nowrap;
-        align-items    : center;
+        list-style         : none;
+        justify-content    : space-between;
+        padding            : 0px 50px 0px 10px;
+        white-space        : nowrap;
+        align-items        : center;
+        // background-color: red;
 
         .item-menu {
             font-family: $font-family;
             font-size  : 17px;
             font-weight: bold;
 
-            height      : 72%;
-            line-height : 56px;
-            margin-right: 2%;
-            margin-left : 5%;
+            height         : 72%;
+            line-height    : 56px;
+            // margin-right: 1%;
+            // margin-left : 1%;
 
             .item-link {
                 display        : inline-block;
@@ -66,11 +70,6 @@ sans-serif;
             transition: transform 0.5s;
         }
 
-        // .item-menu:hover span {
-        //     border-radius: 20%;
-        //     box-shadow   : rgb(255 252 252 / 50%) 0px 10px 15px -3px, rgb(237 233 233 / 100%) 0px 4px 6px -2px;
-        // }
-
         .have-drop {
             position: relative;
             z-index : 5;
@@ -88,7 +87,7 @@ sans-serif;
             top     : 100%;
             left    : 2%;
 
-            width           : 167px;
+            width           : 177px;
             padding         : 0px;
             border-radius   : 5px;
             background-color: #fff;
@@ -129,6 +128,8 @@ sans-serif;
     }
 
     #login-logout {
+        width      : 14%;
+        min-width  : 223px;
         display    : flex;
         height     : 100%;
         align-items: center;
@@ -141,6 +142,7 @@ sans-serif;
             margin     : 0px 20px;
         }
 
+
         .signup {
             height     : 75%;
             line-height: 55px;
@@ -151,18 +153,21 @@ sans-serif;
             color        : #fff;
             border-radius: 5px;
             border       : 1px solid white;
+
+            transition: border-color 0.5s, background-color 0.5s, color 0.5s
         }
 
         .login:hover {
-            cursor         : pointer;
-            text-decoration: underline;
-        }
-
-        .signup:hover {
             cursor    : pointer;
             transform : translateY(-2px);
             transition: transform 0.5s;
-            box-shadow: rgba(46, 117, 240, 0.4) 0px 5px, rgba(46, 107, 240, 0.3) 0px 10px;
+        }
+
+        .signup:hover {
+            cursor          : pointer;
+            background-color: #fff;
+            border-color    : transparent;
+            color           : #444
         }
 
         .name-user {
@@ -204,8 +209,9 @@ sans-serif;
     #languages {
         display    : flex;
         height     : 100%;
-        margin-left: 2%;
-        width      : 25px;
+        margin-left: 10px;
+        width      : 3%;
+        min-width  : 45px;
         align-items: center;
         color      : white;
 
@@ -311,6 +317,20 @@ sans-serif;
                     }
                 }
             }
+        }
+    }
+}
+
+
+@media (max-width: 1800px) {
+    #header-container {
+        #list-menu {
+            // width: 75%;
+
+            .item-menu {
+                // margin-left: 1%;
+            }
+
         }
     }
 }

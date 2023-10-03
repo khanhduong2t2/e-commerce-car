@@ -69,12 +69,19 @@ export default function Header() {
         setShowListBrand(!showListBrand)
     }
 
+
+    // Change width List Menu
+    let [widthMenu, setWidthMenu] = useState(50);
+    const changeWidthListMenu = (width) => {
+        setWidthMenu(width)
+    }
+
     return (
         <div id="header-container">
             <NavLink to="/" activeclassname="active" id="logo" exact>
                 <img width="129px" src="https://firebasestorage.googleapis.com/v0/b/save-portfolio.appspot.com/o/portfolio%2Flogo.png?alt=media&token=3a9d4bf9-6b31-45e7-a643-2b510c31e863" alt="logo" />
             </NavLink>
-            <ul id="list-menu">
+            <ul id="list-menu" style={{ "width": widthMenu + "%" }}>
                 {
                     ls_item_menu && ls_item_menu.length > 0 &&
                     ls_item_menu.map((item, index) => {
@@ -106,6 +113,8 @@ export default function Header() {
                                     </ul>
                                 </li>
                                 :
+                                (widthMenu !== 15)
+                                &&
                                 (
                                     item.type === "display" ?
                                         <li className="item-menu" key={item.name_en}>
@@ -127,7 +136,7 @@ export default function Header() {
                 }
             </ul>
 
-            <FormSearch></FormSearch>
+            <FormSearch getWidthListMenu={changeWidthListMenu}></FormSearch>
             <Auth></Auth>
 
             <div id="languages">

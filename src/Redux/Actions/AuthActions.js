@@ -2,8 +2,10 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 import { listAPIs } from './API/ListAPIs';
 import {
-    CLOSE_FORM_FORGOT, CLOSE_FORM_LOGIN, CLOSE_FORM_REGISTER, SEND_FORGOT_FAIL, SEND_FORGOT_REQUEST, SEND_FORGOT_SUCCESS, USER_LOGIN_FAIL,
-    USER_LOGIN_REQUEST, USER_LOGIN_SUCCESS, USER_LOGOUT, USER_REGISTER_FAIL, USER_REGISTER_REQUEST, USER_REGISTER_SUCCESS
+    CLOSE_FORM_FORGOT, CLOSE_FORM_LOGIN, CLOSE_FORM_REGISTER,
+    SEND_FORGOT_FAIL, SEND_FORGOT_REQUEST, SEND_FORGOT_SUCCESS,
+    USER_REGISTER_FAIL, USER_REGISTER_REQUEST, USER_REGISTER_SUCCESS,
+    USER_LOGIN_FAIL, USER_LOGIN_REQUEST, USER_LOGIN_SUCCESS, USER_LOGOUT
 } from '../Constants/AuthConstants';
 export const login = (username, password, lang) => async (dispatch) => {
     try {
@@ -68,7 +70,7 @@ export const login = (username, password, lang) => async (dispatch) => {
 export const logout = () => (dispatch) => {
     dispatch({
         type: USER_LOGOUT
-    });
+    })
 
     localStorage.removeItem('info');
     document.cookie = `accessToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;

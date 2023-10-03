@@ -14,8 +14,8 @@ import { infoUserReducer, requestAddressReducer } from "./Reducers/InfoUserReduc
 import { orderCreateReducer, orderPayReducer, reOrderReducer } from "./Reducers/OrderReducers";
 import { forgotPassReducer, userLoginReducer, userRegisterReducer } from './Reducers/AuthReducers';
 import { CreateFBPublic, FeedbackPrivateReducers, ListFBPublic } from "./Reducers/FeedbackReducer";
-import { infoProductReducer, productDetailsReducer, productListReducer, productTypeReducer } from './Reducers/ProductReducers';
 import { cancelPurchaseReducer, feedbackPurchaseReducer, listPurchasesReducer } from "./Reducers/PurchaseReducers";
+import { infoProductReducer, productDetailsReducer, productListReducer, productTypeReducer } from './Reducers/ProductReducers';
 
 const reducer = combineReducers({
     language: languageReducers,

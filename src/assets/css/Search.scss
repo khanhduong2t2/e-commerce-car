@@ -1,0 +1,86 @@
+#search-header {
+    width              : 25%;
+    // background-color: blue;
+    height             : 100%;
+    margin             : 0px !important;
+    align-items        : center;
+    position           : relative;
+
+    .search-form {
+        border-radius   : 27px;
+        position        : relative;
+        height          : 57%;
+        flex            : 1;
+        background-color: #020102;
+        color           : white;
+        padding         : 0px 25px;
+    }
+
+    .search-form::placeholder {
+        color: white;
+    }
+
+
+    .icon-search {
+        background-color: transparent;
+        font-size       : 30px;
+        border          : none;
+        position        : absolute;
+        right           : 0;
+        z-index         : 5 !important;
+        color           : white;
+    }
+
+    .icon-search:hover {
+        cursor: pointer;
+        color : #86b7fe;
+    }
+
+
+    #list-result-search {
+        position        : absolute;
+        list-style      : none;
+        top             : 100%;
+        left            : 2%;
+        width           : 95%;
+        border-radius   : 5px;
+        background-color: #fff;
+        padding         : 0px;
+        z-index         : 999;
+        box-shadow      : rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+
+        .item-search {
+
+            .item-link {
+                display        : flex;
+                color          : #272727;
+                padding        : 0px 5%;
+                text-decoration: none;
+                height         : 100%;
+                width          : 100%;
+
+                p {
+                    margin-top : 0;
+                    margin     : auto 0px;
+                    margin-top : 22px;
+                    margin-left: 10px;
+                }
+
+                .icon-new {
+                    color    : red;
+                    font-size: 37px;
+                }
+            }
+
+            .item-link:hover {
+                font-weight: 500;
+            }
+        }
+    }
+}
+
+@media (max-width: 1400px) {
+    #search-header {
+        // width: 5%;
+    }
+}
