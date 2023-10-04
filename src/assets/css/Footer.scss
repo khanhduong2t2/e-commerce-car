@@ -88,5 +88,9 @@
 @media (max-width: 600px) {
     #footer {
         width: 140vw;
+
+        .footer-row {
+            display: block;
+        }
     }
 }
