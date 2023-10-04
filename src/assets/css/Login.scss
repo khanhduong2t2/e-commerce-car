@@ -233,7 +233,14 @@ sans-serif;
     #header-container {
         .container-form {
             form {
-                transform: translate(-50%, -50%) scale(0.6);
+                transform: translate(-50%, -59%) scale(0.6);
+
+                label {
+                    i {
+                        left: 32%;
+                        top : -20%;
+                    }
+                }
             }
         }
     }
