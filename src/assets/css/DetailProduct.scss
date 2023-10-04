@@ -17,7 +17,7 @@
 
         .content-detail {
             width              : 40%;
-            padding            : 30px;
+            padding            : 80px 52px 25px;
             // background-color: #00a3e3;
 
             p {
@@ -37,12 +37,12 @@
             }
 
             button {
+                font-weight     : 600;
                 margin-top      : 20px;
                 margin-right    : 37px;
-                height          : 47px;
+                height          : 50px;
                 border-radius   : 15px;
-                font-weight     : 600;
-                width           : 210px;
+                width           : 100%;
                 background-color: #00ADEF;
             }
 
@@ -249,6 +249,71 @@
             }
 
 
+        }
+    }
+}
+
+
+@media (max-width: 1500px) {
+    #container-detail-product {
+        padding: 15vh 5vw;
+    }
+}
+
+@media (max-width: 1200px) {
+    #container-detail-product {
+        display       : flex;
+        padding       : 9vh 5vw;
+        align-items   : center;
+        flex-direction: column;
+
+        .detail-product {
+            display        : flex;
+            flex-direction : column;
+            justify-content: center;
+            align-items    : center;
+            margin-bottom  : 90px;
+
+            .list-images {
+                width: 60%;
+
+                #container-carousel {
+                    .carousel-show {
+                        height: 300px;
+                    }
+                }
+            }
+
+            .content-detail {
+                width: 61%;
+            }
+        }
+    }
+}
+
+@media (max-width: 600px) {
+    #container-detail-product {
+
+        .detail-product {
+
+            .list-images {
+                width: 90%;
+
+                #container-carousel {
+                    .carousel-show {
+                        height: 222px;
+                    }
+                }
+            }
+
+            .content-detail {
+                width  : 100%;
+                padding: 55px 25px 25px;
+            }
+        }
+
+        .detail-info {
+            width: 100%;
         }
     }
 }
