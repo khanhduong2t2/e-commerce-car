@@ -233,7 +233,7 @@ sans-serif;
     #header-container {
         .container-form {
             form {
-                transform: translate(-50%, -59%) scale(0.6);
+                transform: translate(-50%, -59%) scale(0.9);
 
                 label {
                     i {
@@ -242,6 +242,15 @@ sans-serif;
                     }
                 }
             }
+        }
+    }
+}
+
+@media (max-width: 600px) {
+    #header-container {
+        .container-form {
+            width : 140vw;
+            height: 140vh;
         }
     }
 }
