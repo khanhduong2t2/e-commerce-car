@@ -279,12 +279,11 @@ sans-serif;
             padding: 9px 0px;
 
             .dropdown-menu.show {
-                display         : block;
-                padding         : 0;
-                border-radius   : 0px;
-                width           : 140vw;
-                margin-top      : 17px;
-                // transform    : translate(-1073px, 68px) !important;
+                display      : block;
+                padding      : 0;
+                border-radius: 0px;
+                width        : 140vw;
+                margin-top   : 17px;
 
                 .item-link {
                     padding             : 14px 20px;
@@ -292,10 +291,6 @@ sans-serif;
                     text-decoration-line: none;
                     font-size           : 19px;
                     color               : #1A1A1A;
-                }
-
-                .item-link:active {
-                    background-color: #d4d4d4;
                 }
 
                 .item-link-drop {
@@ -309,27 +304,37 @@ sans-serif;
 
                         padding         : 0;
                         width           : 100%;
-                        background-color: #ffffff;
+                        background-color: #5a5a5a;
 
                         .item-brand {
                             padding: 10px 35px;
 
                             .brand-link {
                                 text-decoration: none;
-                                color          : rgb(32, 32, 32);
+                                color          : rgb(255, 255, 255);
                             }
                         }
 
-                        .item-brand:active {
-                            background-color: #b4b4b4;
+                        .item-brand:hover {
+                            background-color: #ffffff;
+
+                            .brand-link {
+                                color           : rgb(66, 66, 66);
+                                background-color: #ffffff;
+                            }
                         }
                     }
                 }
 
-                :hover {
-                    cursor          : pointer;
-                    background-color: #b3b3b3;
-                }
+                // div:hover,
+                // a:hover {
+                //     background-color: #858585;
+                // }
+            }
+
+            .dropdown-menu.show>div:hover,
+            .dropdown-menu.show>a:hover {
+                background-color: #858585;
             }
         }
 
@@ -340,7 +345,7 @@ sans-serif;
             margin : 0;
 
             p {
-                margin: 2px;
+                margin: 10px 5px;
             }
         }
     }
