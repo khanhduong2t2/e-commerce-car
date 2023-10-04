@@ -97,9 +97,10 @@
         }
 
         #list-result-search {
-            width: 100vw;
-            top  : 120%;
-            left : -70%;
+            position: fixed;
+            width   : 100vw;
+            top     : 77px;
+            left    : 0;
 
             .item-link {
                 font-size: 15px;

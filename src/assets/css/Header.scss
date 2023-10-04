@@ -344,10 +344,11 @@ sans-serif;
 @media (max-width: 600px) {
     #header-container {
         padding: 10px 20px;
-    }
 
-    #logo {
-        margin-right: 0px;
+        #logo {
+            margin-right: 0px;
+            min-width   : 90px;
+        }
     }
 
     .dropdown {
