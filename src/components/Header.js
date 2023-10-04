@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { BiChevronDown } from "react-icons/bi";
+import { IoIosArrowForward, IoIosArrowDown } from "react-icons/io";
 import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 
@@ -159,7 +160,16 @@ export default function Header() {
                                     className="item-link item-link-drop"
                                     onClick={(e) => handleClickDropBrand(e)}
                                 >
-                                    <span>{item.name_vi}</span>
+                                    <span>
+                                        {item.name_vi}
+                                        &nbsp;
+                                        {
+                                            showListBrand ?
+                                                <IoIosArrowDown></IoIosArrowDown>
+                                                :
+                                                <IoIosArrowForward></IoIosArrowForward>
+                                        }
+                                    </span>
                                     {
                                         showListBrand &&
                                         <ul id="list-drop-brand">

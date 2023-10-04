@@ -79,8 +79,10 @@
     }
 }
 
-@media (max-width: 1400px) {
+@media (max-width: 1200px) {
     #search-header {
-        // width: 5%;
+        .search-form {
+            height: 75%;
+        }
     }
 }

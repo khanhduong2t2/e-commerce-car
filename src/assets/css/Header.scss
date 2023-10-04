@@ -224,10 +224,18 @@ sans-serif;
             cursor: pointer;
         }
     }
+
+    .dropdown {
+        .dropdown-menu.show {
+            display: none;
+        }
+    }
 }
 
 
-@media (max-width: 600px) {
+// @media (max-width: 600px) {
+
+@media (max-width: 1200px) {
     #header-container {
         height         : 77px;
         padding        : 10px 37px;
@@ -241,7 +249,7 @@ sans-serif;
             display: none;
         }
 
-        #search-header,
+        // #search-header,
         #login-logout,
         #languages {
             display: none;
@@ -254,6 +262,10 @@ sans-serif;
             background-position: center;
             border             : none;
             display            : block;
+        }
+
+        #dropdown-basic-button:hover {
+            outline: groove;
         }
 
         .dropdown-toggle::after {
@@ -273,9 +285,12 @@ sans-serif;
             padding: 9px 0px;
 
             .dropdown-menu.show {
-                width        : 140vw;
-                border-radius: 0px;
-                padding      : 0;
+                display         : block;
+                padding         : 0;
+                border-radius   : 0px;
+                width           : 140vw;
+                margin-top      : 17px;
+                // transform    : translate(-1073px, 68px) !important;
 
                 .item-link {
                     padding             : 14px 20px;
@@ -300,14 +315,14 @@ sans-serif;
 
                         padding         : 0;
                         width           : 100%;
-                        background-color: #2a2a2a;
+                        background-color: #ffffff;
 
                         .item-brand {
                             padding: 10px 35px;
 
                             .brand-link {
                                 text-decoration: none;
-                                color          : white;
+                                color          : rgb(32, 32, 32);
                             }
                         }
 
@@ -316,21 +331,12 @@ sans-serif;
                         }
                     }
                 }
+
+                :hover {
+                    cursor          : pointer;
+                    background-color: #b3b3b3;
+                }
             }
-        }
-    }
-}
-
-
-@media (max-width: 1800px) {
-    #header-container {
-        #list-menu {
-            // width: 75%;
-
-            .item-menu {
-                // margin-left: 1%;
-            }
-
         }
     }
 }
