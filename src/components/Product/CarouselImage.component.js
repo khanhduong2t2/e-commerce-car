@@ -85,8 +85,8 @@ export default function CarouselImage() {
                             <li className="item-image" key={item.index} onClick={() => handleClickItemImage(item.index)}>
                                 {
                                     item.index !== indexShow ?
-                                        <img width="200px" height="120px" className="blurs-image" src={item.image} alt="img" />
-                                        : <img width="200px" height="120px" src={item.image} alt="img" />
+                                        <img className="blurs-image" src={item.image} alt="img" />
+                                        : <img src={item.image} alt="img" />
                                 }
                             </li>
                         )

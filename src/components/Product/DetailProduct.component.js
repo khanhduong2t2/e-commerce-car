@@ -11,6 +11,7 @@ import { detailsProduct } from "../../Redux/Actions/ProductActions";
 import CarouselImage from './CarouselImage.component';
 import { formattedAmount } from '../../helpers/format_money';
 import DetailInfo from './DetailInfo.component';
+import { SHOW_FORM_LOGIN } from '../../Redux/Constants/AuthConstants';
 
 export default function DetailProduct() {
     const dispatch = useDispatch();
@@ -33,8 +34,10 @@ export default function DetailProduct() {
 
     //----------Add To Cart --------
     const handleAddToCart = (product_id) => {
-        if (infoUser.id && infoUser.username) {
+        if (infoUser && infoUser.id && infoUser.username) {
             dispatch(addNewCart(infoUser.id, product_id, 1, lang))
+        } else {
+            dispatch({ type: SHOW_FORM_LOGIN })
         }
     }
 
