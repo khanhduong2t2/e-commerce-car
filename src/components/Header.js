@@ -12,12 +12,21 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setLanguageAction } from '../Redux/Actions/LangActions';
 import { SHOW_CONTACT } from '../Redux/Constants/ContactConstants';
 import { SHOW_FORM_LOGIN } from '../Redux/Constants/AuthConstants';
+import Login from './Auth/Login.component';
+import Register from './Auth/Register.component';
+import ForgotPass from './Auth/ForgotPass.component';
 
 export default function Header() {
     const dispatch = useDispatch();
 
     const userLogin = useSelector(state => state.userLogin);
-    let { infoUser } = userLogin;
+    let { showFormLogin, infoUser } = userLogin;
+
+    const userRegister = useSelector(state => state.userRegister);
+    let { showFormRegister } = userRegister;
+
+    const forgotPassword = useSelector(state => state.forgotPassword);
+    let { showFormForgot } = forgotPassword;
 
     const language = useSelector(state => state.language);
     let { lang } = language;
@@ -250,6 +259,16 @@ export default function Header() {
                     >EN</p>
                 </div>
             </DropdownButton>
+
+            {
+                showFormLogin && <Login></Login>
+            }
+            {
+                showFormRegister && <Register></Register>
+            }
+            {
+                showFormForgot && <ForgotPass></ForgotPass>
+            }
         </div >
     )
 }

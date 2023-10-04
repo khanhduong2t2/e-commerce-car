@@ -9,9 +9,9 @@ import IconCart from '../Cart/IconCart.component';
 import { logout } from '../../Redux/Actions/AuthActions';
 import { SHOW_FORM_LOGIN, SHOW_FORM_REGISTER } from '../../Redux/Constants/AuthConstants';
 
-import Login from './Login.component';
-import Register from './Register.component';
-import ForgotPass from './ForgotPass.component';
+// import Login from './Login.component';
+// import Register from './Register.component';
+// import ForgotPass from './ForgotPass.component';
 import { NavLink } from 'react-router-dom';
 
 class Auth extends Component {
@@ -28,9 +28,10 @@ class Auth extends Component {
     }
     render() {
         let { lang } = this.props.language;
-        let { showFormRegister } = this.props.userRegister;
-        let { showFormForgot } = this.props.forgotPassword;
-        let { showFormLogin, infoUser } = this.props.userLogin;
+        // let { showFormRegister } = this.props.userRegister;
+        // let { showFormForgot } = this.props.forgotPassword;
+        // let { showFormLogin } = this.props.userLogin;
+        let { infoUser } = this.props.userLogin;
         return (
             <div id="login-logout">
                 {
@@ -57,7 +58,7 @@ class Auth extends Component {
                             <p className="signup" onClick={() => this.handleShowRegister()}>{lang === "en" ? "Sign up" : "Đăng kí"}</p>
                         </>
                 }
-                {
+                {/* {
                     showFormLogin && <Login></Login>
                 }
                 {
@@ -65,7 +66,7 @@ class Auth extends Component {
                 }
                 {
                     showFormForgot && <ForgotPass></ForgotPass>
-                }
+                } */}
             </div >
         );
     }
@@ -75,8 +76,8 @@ const mapStateToProps = (state) => {
     return {
         language: state.language,
         userLogin: state.userLogin,
-        userRegister: state.userRegister,
-        forgotPassword: state.forgotPassword,
+        // userRegister: state.userRegister,
+        // forgotPassword: state.forgotPassword,
     }
 }
 
