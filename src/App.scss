@@ -183,56 +183,6 @@ $color-menu: #1E2132;
     }
 }
 
-
-// List Products Home
-#container-list-products {
-    width     : 100vw;
-    padding   : 0px 14vw 100px 14vw;
-    text-align: center;
-
-    h2 {
-        text-transform: uppercase;
-        margin-top    : 100px;
-        font-size     : 45px;
-        font-weight   : 600;
-    }
-
-    .container-brand {
-        display  : flex;
-        flex-wrap: wrap;
-        width    : 100%;
-
-        .item-product {
-            flex           : 0 0 calc(33.33% - 50px);
-            margin         : 20px 20px;
-            text-align     : center;
-            text-decoration: none;
-            color          : #212529;
-            position       : relative;
-
-            .icon-new {
-                position : absolute;
-                color    : red;
-                font-size: 50px;
-                right    : 30px;
-            }
-
-            img {
-                width: 100%;
-            }
-
-            .name-item {
-                font-size  : 20px;
-                font-weight: bold;
-            }
-
-            .price-item {
-                font-size: 18px;
-            }
-        }
-    }
-}
-
 // Product Type
 #list-products {
     width     : 100vw;
@@ -1334,3 +1284,4 @@ $color-menu: #1E2132;
 @import url('./assets/css/Login.scss');
 @import url('./assets/css/Search.scss');
 @import url('./assets/css/Banner.scss');
+@import url('./assets/css/ListProduct.scss');
