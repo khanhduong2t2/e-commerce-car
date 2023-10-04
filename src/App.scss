@@ -13,93 +13,6 @@ sans-serif;
 
 $color-menu: #1E2132;
 
-// Footer
-#footer {
-    padding   : 100px 0 20px;
-    background: #efefef;
-    position  : relative;
-
-    h1 {
-        font-weight: 600;
-    }
-
-    .footer-img {
-        opacity  : 0.1;
-        position : absolute;
-        left     : 50%;
-        top      : 35%;
-        transform: translate(-50%, -50%);
-    }
-
-    .title-text-footer {
-        text-align    : center;
-        padding-bottom: 50px;
-
-        p {
-            margin     : auto;
-            font-size  : 40px;
-            color      : #8a1e1d;
-            font-weight: bold;
-            position   : relative;
-            z-index    : 1;
-            display    : inline-block;
-        }
-    }
-
-    .footer-row {
-        width          : 80%;
-        margin         : 0 auto;
-        display        : flex;
-        justify-content: space-between;
-        flex-wrap      : wrap;
-
-        .footer-left {
-            padding      : 10px;
-            margin-bottom: 20px;
-        }
-
-        .footer-right {
-            padding      : 10px;
-            margin-bottom: 20px;
-            text-align   : right;
-        }
-
-        .footer-left .fa,
-        .footer-right .fa {
-            font-size: 20px;
-            color    : #292929;
-            margin   : 10px;
-        }
-    }
-
-    .social-links {
-        text-align: center;
-
-        .fa {
-            height     : 40px;
-            width      : 40px;
-            font-size  : 20px;
-            line-height: 40px;
-            border     : 1px solid #292929;
-            margin     : 40px 5px 0;
-            color      : #212121;
-            cursor     : pointer;
-            transition : 0.5s;
-        }
-
-        .fa:hover {
-            background: #212121;
-            color     : #fff;
-            transform : translateY(-7px);
-        }
-
-        p {
-            font-size : 12px;
-            margin-top: 20px;
-        }
-    }
-}
-
 // Contact
 #container-contact {
     position        : fixed;
@@ -660,7 +573,6 @@ $color-menu: #1E2132;
     }
 }
 
-
 // News
 #container-news {
     display        : flex;
@@ -750,7 +662,6 @@ $color-menu: #1E2132;
         margin-bottom: 50px;
     }
 }
-
 
 // Carousel Image
 #container-carousel {
@@ -1285,3 +1196,4 @@ $color-menu: #1E2132;
 @import url('./assets/css/Search.scss');
 @import url('./assets/css/Banner.scss');
 @import url('./assets/css/ListProduct.scss');
+@import url('./assets/css/Footer.scss');
