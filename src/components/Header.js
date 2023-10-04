@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { BiChevronDown } from "react-icons/bi";
 import { IoIosArrowForward, IoIosArrowDown } from "react-icons/io";
@@ -71,11 +71,39 @@ export default function Header() {
     }
 
 
-    // Change width List Menu
+    // Change Width List Menu
     let [widthMenu, setWidthMenu] = useState(50);
     const changeWidthListMenu = (width) => {
         setWidthMenu(width)
     }
+
+    // Hide/Show Button Mobile
+    let btnMobile = useRef();
+    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+        const handleResize = () => {
+            setWindowWidth(window.innerWidth);
+        };
+        window.addEventListener('resize', handleResize);
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
+
+    useEffect(() => {
+        if (btnMobile.current) {
+            let element = btnMobile.current.querySelector('#dropdown-basic-button');
+            const computedStyle = window.getComputedStyle(element);
+            let displayStyle = computedStyle.getPropertyValue('display');
+            if (displayStyle === "none") {
+                setIsMobile(false)
+            } else {
+                setIsMobile(true)
+            }
+        }
+    }, [btnMobile, windowWidth])
 
     return (
         <div id="header-container">
@@ -138,19 +166,24 @@ export default function Header() {
             </ul>
 
             <FormSearch getWidthListMenu={changeWidthListMenu}></FormSearch>
-            <Auth></Auth>
 
-            <div id="languages">
-                <p className="vi" style={lang === "vi" ? { "fontWeight": "900" } : null}
-                    onClick={() => handleChangeLanguage('vi')}
-                >VI</p>
-                <p> / </p>
-                <p className="en" style={lang === "en" ? { "fontWeight": "900" } : null}
-                    onClick={() => handleChangeLanguage('en')}
-                >EN</p>
-            </div>
+            {
+                !isMobile &&
+                <>
+                    <Auth></Auth>
+                    <div id="languages">
+                        <p className="vi" style={lang === "vi" ? { "fontWeight": "900" } : null}
+                            onClick={() => handleChangeLanguage('vi')}
+                        >VI</p>
+                        <p> / </p>
+                        <p className="en" style={lang === "en" ? { "fontWeight": "900" } : null}
+                            onClick={() => handleChangeLanguage('en')}
+                        >EN</p>
+                    </div>
+                </>
+            }
 
-            <DropdownButton id="dropdown-basic-button" title="">
+            <DropdownButton id="dropdown-basic-button" ref={btnMobile} title="">
                 {
                     ls_item_menu && ls_item_menu.length > 0 &&
                     ls_item_menu.map((item, index) => {
@@ -161,7 +194,7 @@ export default function Header() {
                                     onClick={(e) => handleClickDropBrand(e)}
                                 >
                                     <span>
-                                        {item.name_vi}
+                                        {lang === "en" ? item.name_en : item.name_vi}
                                         &nbsp;
                                         {
                                             showListBrand ?
@@ -201,11 +234,21 @@ export default function Header() {
                                     href={item.slug}
                                     className="item-link"
                                 >
-                                    <span>{item.name_vi}</span>
+                                    <span>{lang === "en" ? item.name_en : item.name_vi}</span>
                                 </Dropdown.Item>
                         )
                     })
                 }
+                <Auth></Auth>
+                <div id="languages">
+                    <p className="vi" style={lang === "vi" ? { "fontWeight": "900" } : null}
+                        onClick={() => handleChangeLanguage('vi')}
+                    >VI</p>
+                    <p> / </p>
+                    <p className="en" style={lang === "en" ? { "fontWeight": "900" } : null}
+                        onClick={() => handleChangeLanguage('en')}
+                    >EN</p>
+                </div>
             </DropdownButton>
         </div >
     )

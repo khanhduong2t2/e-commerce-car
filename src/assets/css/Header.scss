@@ -154,7 +154,7 @@ sans-serif;
             border-radius: 5px;
             border       : 1px solid white;
 
-            transition: border-color 0.5s, background-color 0.5s, color 0.5s
+            transition: border-color 0.5s, background-color 0.5s, color 0.5s;
         }
 
         .login:hover {
@@ -249,12 +249,6 @@ sans-serif;
             display: none;
         }
 
-        // #search-header,
-        #login-logout,
-        #languages {
-            display: none;
-        }
-
         #dropdown-basic-button {
             background-image   : url("https://firebasestorage.googleapis.com/v0/b/save-portfolio.appspot.com/o/portfolio%2F3line.png?alt=media&token=ef8c102c-4009-4c87-9fae-6a176ddbc9eb");
             background-color   : #020102;
@@ -336,6 +330,17 @@ sans-serif;
                     cursor          : pointer;
                     background-color: #b3b3b3;
                 }
+            }
+        }
+
+        #languages {
+            color  : #1A1A1A;
+            width  : 100%;
+            padding: 0px 19px;
+            margin : 0;
+
+            p {
+                margin: 2px;
             }
         }
     }

@@ -28,9 +28,9 @@ class Auth extends Component {
     }
     render() {
         let { lang } = this.props.language;
-        let { showFormLogin, infoUser } = this.props.userLogin;
         let { showFormRegister } = this.props.userRegister;
         let { showFormForgot } = this.props.forgotPassword;
+        let { showFormLogin, infoUser } = this.props.userLogin;
         return (
             <div id="login-logout">
                 {

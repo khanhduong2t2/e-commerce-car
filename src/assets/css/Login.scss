@@ -192,3 +192,34 @@ sans-serif;
         left     : 0px;
     }
 }
+
+@media (max-width: 1200px) {
+    #header-container {
+        #login-logout {
+            display: block;
+            width  : 100%;
+
+            .login,
+            .signup {
+                margin        : 0;
+                padding       : 0px 20px;
+                border        : none;
+                border-radius : 0px;
+                transition    : none;
+                color         : #1A1A1A;
+                text-transform: uppercase;
+            }
+
+            .login:hover,
+            .signup:hover {
+                cursor          : pointer;
+                transform       : none;
+                background-color: #b3b3b3;
+            }
+        }
+
+        #login-logout:hover {
+            background-color: #ffffff;
+        }
+    }
+}
