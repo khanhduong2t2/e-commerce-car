@@ -32,9 +32,9 @@ export default function News() {
                                                 <li key={item._id}>
                                                     {
                                                         (item.list_videos && item.list_videos[0]) ?
-                                                            <iframe width="400" height="220" src={item.list_videos[0]} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
+                                                            <iframe width="45%" src={item.list_videos[0]} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
                                                             : (item.list_images && item.list_images[0] ?
-                                                                <img width="400" height="220" src={item.list_images[0]} alt="img_news"></img>
+                                                                <img width="45%" src={item.list_images[0]} alt="img_news"></img>
                                                                 : null)
                                                     }
 
