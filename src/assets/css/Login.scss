@@ -228,3 +228,13 @@ sans-serif;
         }
     }
 }
+
+@media (max-width: 1200px) {
+    #header-container {
+        .container-form {
+            form {
+                transform: translate(-50%, -50%) scale(0.6);
+            }
+        }
+    }
+}
