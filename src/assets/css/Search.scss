@@ -86,3 +86,24 @@
         }
     }
 }
+
+
+@media (max-width: 600px) {
+    #search-header {
+        padding: 5px;
+
+        .search-form {
+            font-size: 15px;
+        }
+
+        #list-result-search {
+            width: 100vw;
+            top  : 120%;
+            left : -70%;
+
+            .item-link {
+                font-size: 15px;
+            }
+        }
+    }
+}
