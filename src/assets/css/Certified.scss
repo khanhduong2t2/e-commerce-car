@@ -140,7 +140,7 @@
         width: 140vw;
 
         .certified {
-            width     : 100%;
+            width     : 77%;
             margin-top: 100px;
             padding   : 0px 0px 0px 100px;
 
@@ -157,13 +157,13 @@
 
                     .content {
                         order      : 0;
-                        width      : 77%;
+                        width      : 100%;
                         overflow   : hidden;
                         white-space: normal;
                         margin     : 20px 0px !important;
 
                         .title {
-                            justify-content: start;
+                            text-align: left;
                         }
                     }
                 }
