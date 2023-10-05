@@ -55,12 +55,13 @@ export default function Header() {
         {
             name_vi: "Liên hệ",
             name_en: "Contact",
-            slug: "/contact",
+            slug: "#",
             type: "display"
         },
     ]
 
     const onShowForm = (e, type) => {
+        console.log('onSHowForm')
         e.preventDefault();
         if (infoUser && infoUser.id) {
             if (type === "Contact") {
@@ -240,12 +241,21 @@ export default function Header() {
                                     }
                                 </div>
                                 :
-                                <Dropdown.Item key={item.name_en}
-                                    href={item.slug}
-                                    className="item-link"
-                                >
-                                    <span>{lang === "en" ? item.name_en : item.name_vi}</span>
-                                </Dropdown.Item>
+                                item.slug === "#" ?
+                                    <Dropdown.Item key={item.name_en}
+                                        href={item.slug}
+                                        onClick={(e) => onShowForm(e, item.name_en)}
+                                        className="item-link"
+                                    >
+                                        <span>{lang === "en" ? item.name_en : item.name_vi}</span>
+                                    </Dropdown.Item>
+                                    :
+                                    <Dropdown.Item key={item.name_en}
+                                        href={item.slug}
+                                        className="item-link"
+                                    >
+                                        <span>{lang === "en" ? item.name_en : item.name_vi}</span>
+                                    </Dropdown.Item>
                         )
                     })
                 }

@@ -85,7 +85,7 @@ export default function Contact() {
                 isShow ?
                     <div id="container-contact" onClick={(e) => handleCloseForm(e)} >
                         <Form className="form-contact">
-                            <img width="590px" height="150px" src="https://firebasestorage.googleapis.com/v0/b/save-portfolio.appspot.com/o/portfolio%2Femail.jpg?alt=media&token=4dfef9cf-ce58-441c-beda-6b5e5d67be56" alt="img_try" />
+                            <img width="100%" src="https://firebasestorage.googleapis.com/v0/b/save-portfolio.appspot.com/o/portfolio%2Femail.jpg?alt=media&token=4dfef9cf-ce58-441c-beda-6b5e5d67be56" alt="img_try" />
                             <p className="title">{lang === "en" ? "Contact & Test drive the car" : "Liên hệ & Lái thử xe"}</p>
                             <p>{lang === "en" ? "Please enter your information" : "Quý khách hàng vui lòng nhập thông tin"}</p>
                             <input
