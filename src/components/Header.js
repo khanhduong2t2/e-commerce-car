@@ -116,6 +116,16 @@ export default function Header() {
         }
     }, [btnMobile, windowWidth])
 
+    // Close menu
+    const [showDropdown, setShowDropdown] = useState(false);
+    const handleCloseMenu = () => {
+        setShowDropdown(false);
+    }
+
+    const handleCloseDropdown = (isOpen) => {
+        setShowDropdown(isOpen);
+    };
+
     return (
         <div id="header-container">
             <NavLink to="/" activeclassname="active" id="logo" exact>
@@ -194,7 +204,11 @@ export default function Header() {
                 </>
             }
 
-            <DropdownButton id="dropdown-basic-button" ref={btnMobile} title="">
+            <DropdownButton show={showDropdown} id="dropdown-basic-button" ref={btnMobile} title=""
+                onToggle={(isOpen) => {
+                    handleCloseDropdown(isOpen);
+                }}
+            >
                 {
                     ls_item_menu && ls_item_menu.length > 0 &&
                     ls_item_menu.map((item, index) => {
@@ -259,7 +273,7 @@ export default function Header() {
                         )
                     })
                 }
-                <Auth></Auth>
+                <Auth onCloseMenu={handleCloseMenu}></Auth>
                 <div id="languages">
                     <p className="vi" style={lang === "vi" ? { "fontWeight": "900" } : null}
                         onClick={() => handleChangeLanguage('vi')}

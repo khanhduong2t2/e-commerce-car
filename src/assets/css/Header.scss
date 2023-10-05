@@ -193,9 +193,9 @@ sans-serif;
             }
 
             a:hover {
-                border-radius: 15px;
-                font-weight  : 400;
-                color        : #070707;
+                // border-radius: 15px;
+                font-weight: 400;
+                color      : #070707;
             }
         }
 
@@ -234,16 +234,7 @@ sans-serif;
             cursor: pointer;
         }
     }
-
-    .dropdown {
-        .dropdown-menu.show {
-            display: none;
-        }
-    }
 }
-
-
-// @media (max-width: 600px) {
 
 @media (max-width: 1200px) {
     #header-container {
@@ -289,7 +280,6 @@ sans-serif;
             padding: 9px 0px;
 
             .dropdown-menu.show {
-                display      : block;
                 padding      : 0;
                 border-radius: 0px;
                 width        : 140vw;
@@ -335,11 +325,6 @@ sans-serif;
                         }
                     }
                 }
-
-                // div:hover,
-                // a:hover {
-                //     background-color: #858585;
-                // }
             }
 
             .dropdown-menu.show>div:hover,

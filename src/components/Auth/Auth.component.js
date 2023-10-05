@@ -9,9 +9,6 @@ import IconCart from '../Cart/IconCart.component';
 import { logout } from '../../Redux/Actions/AuthActions';
 import { SHOW_FORM_LOGIN, SHOW_FORM_REGISTER } from '../../Redux/Constants/AuthConstants';
 
-// import Login from './Login.component';
-// import Register from './Register.component';
-// import ForgotPass from './ForgotPass.component';
 import { NavLink } from 'react-router-dom';
 
 class Auth extends Component {
@@ -26,23 +23,30 @@ class Auth extends Component {
     handleOnClickLogout = () => {
         this.props.userLogoutAction();
     }
+
+    handleCloseMenu = () => {
+        let onCloseMenu = this.props.onCloseMenu;
+        if (onCloseMenu) {
+            onCloseMenu()
+        }
+    }
     render() {
         let { lang } = this.props.language;
-        // let { showFormRegister } = this.props.userRegister;
-        // let { showFormForgot } = this.props.forgotPassword;
-        // let { showFormLogin } = this.props.userLogin;
         let { infoUser } = this.props.userLogin;
         return (
             <div id="login-logout">
                 {
                     infoUser && infoUser.username ?
                         <>
-                            {/* <DropdownButton className="name-user" id="dropdown-basic-button" title={infoUser.username}> */}
                             <DropdownButton className="name-user" title={infoUser.username}>
-                                <NavLink to="/change-info" activeclassname="active">
+                                <NavLink to="/change-info" activeclassname="active"
+                                    onClick={() => this.handleCloseMenu()}
+                                >
                                     {lang === "en" ? "Change information" : "Thay đổi thông tin"}
                                 </NavLink>
-                                <NavLink to="/my-purchase" activeclassname="active">
+                                <NavLink to="/my-purchase" activeclassname="active"
+                                    onClick={() => this.handleCloseMenu()}
+                                >
                                     {lang === "en" ? "My purchase" : "Đơn hàng"}
                                 </NavLink>
                                 <Dropdown.Item onClick={() => this.handleOnClickLogout()}>
@@ -58,15 +62,6 @@ class Auth extends Component {
                             <p className="signup" onClick={() => this.handleShowRegister()}>{lang === "en" ? "Sign up" : "Đăng kí"}</p>
                         </>
                 }
-                {/* {
-                    showFormLogin && <Login></Login>
-                }
-                {
-                    showFormRegister && <Register></Register>
-                }
-                {
-                    showFormForgot && <ForgotPass></ForgotPass>
-                } */}
             </div >
         );
     }
@@ -76,8 +71,6 @@ const mapStateToProps = (state) => {
     return {
         language: state.language,
         userLogin: state.userLogin,
-        // userRegister: state.userRegister,
-        // forgotPassword: state.forgotPassword,
     }
 }
 
