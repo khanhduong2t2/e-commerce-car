@@ -19,28 +19,38 @@ export default function DetailNews() {
 
     return (
         <div id="container-detail-news">
-            {
-                detail && detail.title &&
-                <h1>{detail.title}</h1>
-            }
-
+            <div className="content">
+                {
+                    detail && detail.title &&
+                    <h1>{detail.title}</h1>
+                }
+                {
+                    detail && detail.list_images && detail.list_images.length > 0 &&
+                    <img width="100%" src={detail.list_images[0]} alt="img_news" />
+                }
+                {
+                    detail && detail.list_contents && detail.list_contents.length > 0 &&
+                    detail.list_contents.map((item, index) => {
+                        return (
+                            <div className="item-content" key={index} dangerouslySetInnerHTML={{ __html: item }} />
+                        )
+                    })
+                }
+            </div>
             {
                 detail && detail.list_videos && detail.list_videos.length > 0 &&
-                detail.list_videos.map((item, index) => {
-                    const html = `<iframe width="400" height="220" src=${item} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>`
-                    return (
-                        <div key={index} dangerouslySetInnerHTML={{ __html: html }} />
-                    )
-                })
+                <div className="video">
+                    {
+                        detail.list_videos.map((item, index) => {
+                            const html = `<iframe width="100%" height="100%" src=${item} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>`
+                            return (
+                                <div className="item-video" key={index} dangerouslySetInnerHTML={{ __html: html }} />
+                            )
+                        })
+                    }
+                </div>
             }
-            {
-                detail && detail.list_contents && detail.list_contents.length > 0 &&
-                detail.list_contents.map((item, index) => {
-                    return (
-                        <div className="item-content" key={index} dangerouslySetInnerHTML={{ __html: item }} />
-                    )
-                })
-            }
-        </div>
+
+        </div >
     )
 }
