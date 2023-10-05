@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
+
 import { FaChevronDown } from "react-icons/fa";
-import { useDispatch, useSelector } from 'react-redux'
+import { textLanguage } from '../../util/text_language';
 import { getListCertified } from '../../Redux/Actions/CertifiedActions'
 export default function CertifiedComponent() {
     const dispatch = useDispatch();
@@ -8,8 +10,12 @@ export default function CertifiedComponent() {
     let [numShow, setNumShow] = useState(4);
     let [showIconDown, setShowIconDown] = useState(true);
 
+    const language = useSelector(state => state.language);
+    let { lang } = language;
     const certified = useSelector(state => state.certified);
     let { listCertified } = certified;
+
+    let content = lang === "en" ? textLanguage.EN : textLanguage.VI;
 
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -26,21 +32,19 @@ export default function CertifiedComponent() {
     return (
         <div id="container-certified">
             <div className="service-plus">
-                <h4>Dịch Vụ Hỗ Trợ 24h</h4>
+                <h4>{content.title_service_24h}</h4>
                 <p>
-                    Dịch vụ hỗ trợ 24h giúp bạn an tâm lái xe mà không lo lắng về những bất trắc trên đường.
-                    Bất cứ khi nào bạn và xe gặp tình huống hy hữu không mong đợi, hãy gọi ngay cho E-Car để được
+                    {content.content_24h1}
                 </p>
                 <ul>
-                    <li>Hỗ trợ kỹ thuật ngay tại nơi xảy ra sự cố</li>
-                    <li>Miễn phí kéo xe về xưởng dịch vụ chính hãng hoặc địa điểm sửa chữa trong bán kính 15km</li>
-                    <li>Sắp xếp phương tiện thay thế cho khách hàng di chuyển</li>
-                    <li>Hỗ trợ 10l nhiên liệu (2 lần/năm)</li>
-                    <li>Hỗ trợ giao chìa khóa dự phòng trong bán kính 15km</li>
+                    <li>{content.content_24h2}</li>
+                    <li>{content.content_24h3}</li>
+                    <li>{content.content_24h4}</li>
+                    <li>{content.content_24h5}</li>
+                    <li>{content.content_24h6}</li>
                 </ul>
                 <p>
-                    Tất cả khách hàng sở hữu xe E-Car từ 2/7/2023 được tận hưởng những tiện ích này trong vòng 3 năm
-                    (tính từ ngày xuất hóa đơn) không giới hạn số lần yêu cầu dịch vụ.
+                    {content.content_24h7}
                 </p>
             </div>
             <div className="certified">
@@ -56,16 +60,16 @@ export default function CertifiedComponent() {
                                     (index + 1) % 2 === 0 ?
                                         <div className="item-certified" key={index}>
                                             <div className="content">
-                                                <p className="title">#{index + 1} {item.title}</p>
-                                                <p>{item.content}</p>
+                                                <p className="title">#{index + 1} {lang === "en" ? item.title_en : item.title}</p>
+                                                <p>{lang === "en" ? item.content_en : item.content}</p>
                                             </div>
                                             <img width="150px" height="150px" src={item.image} alt="img_item" />
                                         </div>
                                         : <div className="item-certified" key={index}>
                                             <img width="150px" height="150px" src={item.image} alt="img_item" />
                                             <div className="content">
-                                                <p className="title">#{index + 1} {item.title}</p>
-                                                <p>{item.content}</p>
+                                                <p className="title">#{index + 1} {lang === "en" ? item.title_en : item.title}</p>
+                                                <p>{lang === "en" ? item.content_en : item.content}</p>
                                             </div>
                                         </div>
                                 )

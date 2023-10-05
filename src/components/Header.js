@@ -1,20 +1,21 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
 import { NavLink } from 'react-router-dom';
 import { BiChevronDown } from "react-icons/bi";
-import { IoIosArrowForward, IoIosArrowDown } from "react-icons/io";
 import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
-
-import Auth from './Auth/Auth.component';
-import FormSearch from './Search/FormSearch.component';
-import { useDispatch, useSelector } from 'react-redux';
+import { IoIosArrowForward, IoIosArrowDown } from "react-icons/io";
 
 import { setLanguageAction } from '../Redux/Actions/LangActions';
 import { SHOW_CONTACT } from '../Redux/Constants/ContactConstants';
 import { SHOW_FORM_LOGIN } from '../Redux/Constants/AuthConstants';
+
+import Auth from './Auth/Auth.component';
 import Login from './Auth/Login.component';
 import Register from './Auth/Register.component';
 import ForgotPass from './Auth/ForgotPass.component';
+import FormSearch from './Search/FormSearch.component';
 
 export default function Header() {
     const dispatch = useDispatch();

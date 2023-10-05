@@ -22,7 +22,19 @@ const textLanguage = {
         invalid_email: "Email không hợp lệ !",
         invalid_username: "Tên tài khoản phải hơn 6 kí tự, không chứa khoảng trắng !",
         invalid_password: "Mật khẩu phải gồm kí tự: Hoa, thường và số !",
-        invalid_confirm_pw: "Mật khẩu xác thực không hợp lệ !"
+        invalid_confirm_pw: "Mật khẩu xác thực không hợp lệ !",
+
+        //Service 24h
+        title_service_24h: "Dịch Vụ Hỗ Trợ 24h",
+        content_24h1: `Dịch vụ hỗ trợ 24h giúp bạn an tâm lái xe mà không lo lắng về những bất trắc trên đường.
+        Bất cứ khi nào bạn và xe gặp tình huống hy hữu không mong đợi, hãy gọi ngay cho E-Car để được.`,
+        content_24h2: `Hỗ trợ kỹ thuật ngay tại nơi xảy ra sự cố`,
+        content_24h3: `Miễn phí kéo xe về xưởng dịch vụ chính hãng hoặc địa điểm sửa chữa trong bán kính 15km`,
+        content_24h4: `Sắp xếp phương tiện thay thế cho khách hàng di chuyển`,
+        content_24h5: `Hỗ trợ 10l nhiên liệu (2 lần/năm)`,
+        content_24h6: `Hỗ trợ giao chìa khóa dự phòng trong bán kính 15km`,
+        content_24h7: `Tất cả khách hàng sở hữu xe E-Car từ 2/7/2023 được tận hưởng những tiện ích này trong vòng 3 năm
+        (tính từ ngày xuất hóa đơn) không giới hạn số lần yêu cầu dịch vụ.`,
 
     },
     EN: {
@@ -49,6 +61,18 @@ const textLanguage = {
         invalid_username: "Username must be more than 6 characters, contain no spaces !",
         invalid_password: "Password must contain characters: Uppercase, lowercase and numbers !",
         invalid_confirm_pw: "Invalid confirm password !",
+
+        //Service 24h
+        title_service_24h: "24h Support Service",
+        content_24h1: `24-hour support service helps you drive with peace of mind without worrying about problems on the road.
+        Whenever you and your car encounter a rare and unexpected situation, call E-Car immediately to get help.`,
+        content_24h2: `Technical support right at the scene of the problem`,
+        content_24h3: `Free towing of the vehicle to the genuine service workshop or repair location within a radius of 15km`,
+        content_24h4: `Arrange alternative transportation for customers`,
+        content_24h5: `Support 10 liters of fuel (2 times/year)`,
+        content_24h6: `Support delivery of spare keys within a radius of 15km`,
+        content_24h7: `All customers who own an E-Car from July 2, 2023 can enjoy these benefits for 3 years
+        (calculated from the invoice date) unlimited number of service requests.`,
     }
 }
 

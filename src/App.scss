@@ -335,83 +335,6 @@ $color-menu: #1E2132;
     }
 }
 
-// Certified
-#container-certified {
-    display    : flex;
-    width      : 100%;
-    padding-top: 5% !important;
-
-    .certified {
-        margin-top: 55px;
-
-        .title-certified {
-            color: #555555;
-
-            h1 {
-                border-bottom: 2px solid rgb(57, 57, 57);
-            }
-        }
-
-        .list-certified {
-            text-align    : center;
-            padding-bottom: 20px;
-
-            .item-certified {
-                display        : flex;
-                margin         : 72px 0px;
-                justify-content: space-between;
-
-                .content {
-                    width     : 600px;
-                    text-align: justify;
-
-                    .title {
-                        font-size  : 22px;
-                        font-weight: 600;
-                    }
-                }
-            }
-
-            .item-certified:nth-child(odd) {
-                justify-content: left;
-
-                .content {
-                    margin: 0px 60px;
-                }
-            }
-
-            .iconDown {
-                font-size: 20px;
-            }
-
-            .iconDown:hover {
-                cursor   : pointer;
-                font-size: 22px;
-            }
-        }
-    }
-
-    .service-plus {
-        width           : 400px;
-        border-radius   : 10px;
-        height          : 567px;
-        color           : #fff;
-        text-align      : justify;
-        background-color: #383838;
-        padding         : 20px 25px;
-        margin          : 5% 100px 0px 50px;
-
-        h4 {
-            text-align: center;
-            margin    : 15px 0px;
-        }
-    }
-
-    .video {
-        margin: 5% 2%;
-    }
-}
-
 // Change Info
 #container-info {
     width          : 100vw;
@@ -865,6 +788,7 @@ $color-menu: #1E2132;
 @import url('./assets/css/Search.scss');
 @import url('./assets/css/Banner.scss');
 @import url('./assets/css/News.scss');
+@import url('./assets/css/Certified.scss');
 @import url('./assets/css/ListProduct.scss');
 @import url('./assets/css/DetailProduct.scss');
 @import url('./assets/css/Footer.scss');
