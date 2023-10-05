@@ -6,6 +6,9 @@ import { NavLink } from 'react-router-dom';
 export default function News() {
     const dispatch = useDispatch();
 
+    const language = useSelector(state => state.language);
+    let { lang } = language;
+
     const news = useSelector(state => state.news);
     let { isLoading, listNews } = news;
 
@@ -40,8 +43,8 @@ export default function News() {
 
                                                     <div className="container-content">
                                                         <NavLink to={"/detail-news/" + item._id} activeclassname="active">
-                                                            <p className="title">{item.title}</p>
-                                                            <p className="content">{item.description}</p>
+                                                            <p className="title">{lang === "en" ? item.title_en : item.title}</p>
+                                                            <p className="content">{lang === "en" ? item.description_en : item.description}</p>
                                                         </NavLink>
                                                     </div>
                                                 </li>
@@ -51,7 +54,7 @@ export default function News() {
                                 </ul>
                             </div>
                             <div className="news-list-sup">
-                                <h4>Bài viết mới</h4>
+                                <h4>{lang === "en" ? "New Posts" : "Bài viết mới"}</h4>
                                 <ul>
                                     {
                                         listNews && listNews.length > 0 &&
@@ -60,7 +63,7 @@ export default function News() {
                                                 item.status === "new" ?
                                                     <li key={item._id}>
                                                         <NavLink to={"/detail-news/" + item._id} activeclassname="active">
-                                                            {item.title}
+                                                            {lang === "en" ? item.title_en : item.title}
                                                         </NavLink>
                                                     </li>
                                                     : null

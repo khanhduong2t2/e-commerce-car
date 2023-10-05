@@ -6,6 +6,9 @@ import { getDetailNews } from '../../Redux/Actions/NewsActions';
 export default function DetailNews() {
     const dispatch = useDispatch();
     let { id } = useParams();
+
+    const language = useSelector(state => state.language);
+    let { lang } = language;
     const detailNews = useSelector(state => state.detailNews);
     let { detail } = detailNews;
 
@@ -21,8 +24,8 @@ export default function DetailNews() {
         <div id="container-detail-news">
             <div className="content">
                 {
-                    detail && detail.title &&
-                    <h1>{detail.title}</h1>
+                    detail && detail.title && detail.title_en &&
+                    <h1>{lang === "en" ? detail.title_en : detail.title}</h1>
                 }
                 {
                     detail && detail.list_images && detail.list_images.length > 0 &&
@@ -30,11 +33,20 @@ export default function DetailNews() {
                 }
                 {
                     detail && detail.list_contents && detail.list_contents.length > 0 &&
-                    detail.list_contents.map((item, index) => {
-                        return (
-                            <div className="item-content" key={index} dangerouslySetInnerHTML={{ __html: item }} />
-                        )
-                    })
+                    (
+                        lang === "en" ?
+                            detail.list_contents_en.map((item, index) => {
+                                return (
+                                    <div className="item-content" key={index} dangerouslySetInnerHTML={{ __html: item }} />
+                                )
+                            })
+                            :
+                            detail.list_contents.map((item, index) => {
+                                return (
+                                    <div className="item-content" key={index} dangerouslySetInnerHTML={{ __html: item }} />
+                                )
+                            })
+                    )
                 }
             </div>
             {
