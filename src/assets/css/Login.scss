@@ -196,7 +196,7 @@ sans-serif;
 @media (max-width: 1200px) {
     #header-container {
         #login-logout {
-            display: block;
+            display: flex;
             width  : 100%;
 
             .login,
@@ -215,6 +215,19 @@ sans-serif;
                 cursor          : pointer;
                 transform       : none;
                 background-color: #b3b3b3;
+            }
+
+            .cart {
+                // display   : inline-block;
+                // margin : 10px 0px;
+
+                .icon-cart {
+                    color: #000;
+                }
+
+                .number-cart {
+                    color: #000 !important;
+                }
             }
         }
 

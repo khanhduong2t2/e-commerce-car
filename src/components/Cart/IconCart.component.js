@@ -18,9 +18,9 @@ export default function IconCart(props) {
 
     return (
         <>
-            <NavLink to="/cart" activeclassname="active">
+            <NavLink to="/cart" activeclassname="active" className="cart">
                 <ShoppingCartOutlined className="icon-cart" />
-                <span style={{ "color": 'white', "textDecoration": "none" }}>{(list_carts && list_carts.length) ? list_carts.length : 0}</span>
+                <span class="number-cart" style={{ "color": 'white', "textDecoration": "none" }}>{(list_carts && list_carts.length) ? list_carts.length : 0}</span>
             </NavLink>
         </>
     )
