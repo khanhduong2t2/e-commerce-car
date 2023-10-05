@@ -1,10 +1,12 @@
 // Certified
 #container-certified {
-    display    : flex;
-    width      : 100%;
-    padding-top: 5% !important;
+    display       : flex;
+    flex-direction: row;
+    width         : 100%;
+    padding-top   : 5% !important;
 
     .certified {
+        width     : 40%;
         margin-top: 55px;
 
         .title-certified {
@@ -27,6 +29,7 @@
                 .content {
                     width     : 600px;
                     text-align: justify;
+                    padding   : 0px 10px 0px 0px;
 
                     .title {
                         font-size  : 22px;
@@ -55,14 +58,15 @@
     }
 
     .service-plus {
-        width           : 400px;
+        width           : 40%;
         border-radius   : 10px;
-        height          : fit-content;
         color           : #fff;
         text-align      : justify;
         background-color: #383838;
-        padding         : 20px 25px;
-        margin          : 5% 100px 0px 50px;
+
+        padding: 20px 25px;
+        height : fit-content;
+        margin : 5% 100px 0px 50px;
 
         h4 {
             text-align: center;
@@ -71,6 +75,95 @@
     }
 
     .video {
+        width : 50%;
         margin: 5% 2%;
+
+        iframe {
+            height: 250px;
+        }
+    }
+}
+
+@media (max-width: 1500px) {
+    #container-certified {
+        flex-direction: column;
+        align-items   : center;
+
+        .certified {
+            width: 65%;
+            order: -1;
+        }
+
+        .service-plus {
+            width        : 60%;
+            order        : 1;
+            margin-bottom: 50px;
+        }
+
+        .video {
+            order: 0;
+
+            iframe {
+                height: 350px;
+            }
+        }
+    }
+}
+
+@media (max-width: 900px) {
+    #container-certified {
+
+        .certified {
+            width: 87%;
+            order: -1;
+        }
+
+        .service-plus {
+            width        : 77%;
+            margin       : 0;
+            margin-bottom: 50px;
+        }
+
+        .video {
+            order: 0;
+            width: 77%;
+
+            iframe {
+                height: 350px;
+            }
+        }
+    }
+}
+
+@media (max-width: 600px) {
+    #container-certified {
+        width: 140vw;
+
+        .certified {
+            width     : 100%;
+            margin-top: 100px;
+            padding   : 0px 20px;
+
+            .list-certified {
+                .item-certified {
+                    display       : flex;
+                    width         : 100%;
+                    flex-direction: column;
+                    margin        : 25px 0px;
+
+                    img {
+                        order: -1;
+                    }
+
+                    .content {
+                        order      : 0;
+                        width      : 100%;
+                        overflow   : hidden;
+                        white-space: normal;
+                        margin     : 20px 0px !important;
+                    }
+                }
+            }
+        }
     }
 }
