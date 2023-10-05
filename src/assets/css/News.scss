@@ -151,6 +151,15 @@
     }
 
     #container-detail-news {
-        width: 140vw;
+        width         : 140vw;
+        flex-direction: column;
+
+        .content {
+            width: 90%;
+        }
+
+        .video {
+            width: 90%;
+        }
     }
 }
