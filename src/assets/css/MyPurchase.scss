@@ -1,10 +1,10 @@
 // My purchase
 #container-purchase {
-    margin-bottom: 8%;
-    margin-top   : 10%;
-    width        : 100%;
-    min-width    : 1500px;
-    padding      : 0 8%;
+    margin-bottom   : 8%;
+    margin-top      : 10%;
+    width           : 100%;
+    // min-width    : 1500px;
+    padding         : 0 8%;
 
     table {
         thead {
@@ -256,6 +256,7 @@
 @media (max-width: 600px) {
     #container-purchase {
         width     : 140vw;
+        max-width : 530px;
         margin-top: 100px;
 
         #purchase-mobile {
@@ -268,6 +269,12 @@
 
                 .name-product {
                     display: flex;
+                    margin : 10px 0px;
+
+                    .name-price {
+                        display       : flex;
+                        flex-direction: column;
+                    }
                 }
 
                 .contain-status {

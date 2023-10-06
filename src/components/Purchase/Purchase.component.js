@@ -302,7 +302,7 @@ export default function Purchase() {
                                             ? list_purchases.map((item, index) => {
                                                 return (
                                                     <div className="item-purchase" key={index}>
-                                                        <p>Đơn hàng: #{index + 1}</p>
+                                                        <strong>{content_lang.stt_items}: #{index + 1}</strong>
                                                         {
                                                             item.list_carts.map((item, index) => {
                                                                 return (
@@ -310,7 +310,7 @@ export default function Purchase() {
                                                                         <img width="100px" height="50px" src={item.link_image[0]} alt="img" />
                                                                         <p className="name-price">
                                                                             <span>{item.name}&nbsp; <i>x{item.quantity}</i></span>
-                                                                            <span key={index}>{item.price}&nbsp; <i>x{item.quantity}</i></span>
+                                                                            <span key={index}>{formattedAmount(item.price)}&nbsp; <i>x{item.quantity}</i></span>
                                                                         </p>
                                                                     </div>
                                                                 )
@@ -318,9 +318,9 @@ export default function Purchase() {
                                                         }
                                                         <div className="contain-status">
                                                             <div>
-                                                                <p style={{ "textDecoration": "line-through" }}>{formattedAmount(item.cost)}</p>
-                                                                <p>{content_lang.discount_code}: {item.code_promotion}</p>
-                                                                <p>{content_lang.total}: {formattedAmount(item.total_price)}</p>
+                                                                <p style={{ "textDecoration": "line-through" }}>{content_lang.price_items}: {formattedAmount(item.cost)}</p>
+                                                                <p>{content_lang.discount_code}: <strong>{item.code_promotion}</strong></p>
+                                                                <p>{content_lang.total}: <strong>{formattedAmount(item.total_price)}</strong></p>
                                                             </div>
                                                             <div>
                                                                 {
