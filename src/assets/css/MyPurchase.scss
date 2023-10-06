@@ -96,6 +96,10 @@
         justify-content: center;
         align-items    : center;
         z-index        : 999;
+
+        .form-rate {
+            height: fit-content;
+        }
     }
 
     .popup-content {
@@ -117,7 +121,7 @@
     }
 
     .popup p {
-        margin-bottom: 45px;
+        margin-bottom: 10px;
     }
 
     .popup button {
@@ -212,7 +216,7 @@
             align-items: center;
 
             .item-ans {
-                border       : 1px solid #000;
+                border       : 1px solid #858585;
                 padding      : 9px;
                 margin       : 9px;
                 border-radius: 25px;
@@ -224,7 +228,9 @@
             }
 
             .item-ans.active {
-                background-color: #05eeee;
+                border          : 1px solid #0599ee;
+                color           : #fff;
+                background-color: #0599ee;
             }
         }
 
@@ -249,6 +255,12 @@
         .btn-send {
             width           : 27%;
             background-color: #00ADEF;
+        }
+    }
+
+    .form-cancel {
+        p {
+            margin-bottom: 30px;
         }
     }
 }
