@@ -306,7 +306,7 @@ export default function Purchase() {
                                                         {
                                                             item.list_carts.map((item, index) => {
                                                                 return (
-                                                                    <div className="item-product" key={index}>
+                                                                    <div className="name-product" key={index}>
                                                                         <img width="100px" height="50px" src={item.link_image[0]} alt="img" />
                                                                         <p className="name-price">
                                                                             <span>{item.name}&nbsp; <i>x{item.quantity}</i></span>
@@ -322,20 +322,45 @@ export default function Purchase() {
                                                                 <p>{content_lang.discount_code}: {item.code_promotion}</p>
                                                                 <p>{content_lang.total}: {formattedAmount(item.total_price)}</p>
                                                             </div>
-                                                            {/* <div>
+                                                            <div>
                                                                 {
                                                                     lang === "en" ?
                                                                         <>
                                                                             <p>{paymentType[item.payment_type].mess_en} - {paymentStatus[item.payment_status].mess_en}</p>
-                                                                            <p>{item.order_status === "CANCELED" ? content_lang.canceled : deliveryStatus[item.delivery_status].mess_en}</p>
+                                                                            <p>{content_lang.order_status}: {item.order_status === "CANCELED" ? content_lang.canceled : deliveryStatus[item.delivery_status].mess_en}</p>
                                                                         </>
                                                                         :
                                                                         <>
                                                                             <p>{paymentType[item.payment_type].mess_vi} - {paymentStatus[item.payment_status].mess_vi}</p>
-                                                                            <p>{item.order_status === "CANCELED" ? content_lang.canceled : deliveryStatus[item.delivery_status].mess_vi}</p>
+                                                                            <p>{content_lang.order_status}: {item.order_status === "CANCELED" ? content_lang.canceled : deliveryStatus[item.delivery_status].mess_vi}</p>
                                                                         </>
                                                                 }
-                                                            </div> */}
+                                                            </div>
+                                                        </div>
+                                                        <div className="action">
+                                                            {
+                                                                item.delivery_status !== "DELIVERED" && !["SUCCEED", "CANCELED", "ERROR"].includes(item.order_status) ?
+                                                                    <Button className="cancel-order" variant="primary"
+                                                                        onClick={() => handleCancelClick({ id: item._id, index: index })}
+                                                                    >{content_lang.cancel_item}</Button>
+                                                                    :
+                                                                    <>
+                                                                        {
+                                                                            item.feedback && item.feedback.type_feel ?
+                                                                                <Button className="btn-feedback" variant="primary"
+                                                                                    onClick={() => handleClickViewFeedback(item.feedback)}
+                                                                                >{content_lang.see_review}</Button>
+                                                                                :
+                                                                                <Button className="btn-feedback" variant="primary"
+                                                                                    onClick={() => handleClickFeedback({ id: item._id, index: index })}
+                                                                                >{content_lang.review}</Button>
+                                                                        }
+
+                                                                        <Button className="btn-reorder" variant="primary"
+                                                                            onClick={() => handleClickReOrder(item._id)}
+                                                                        >{content_lang.reorder}</Button>
+                                                                    </>
+                                                            }
                                                         </div>
                                                     </div>
                                                 )
