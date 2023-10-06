@@ -319,9 +319,10 @@
 
         .popup {
             .form-rate {
-                width  : 80%;
-                height : fit-content;
-                padding: 20px 15px;
+                width    : 80%;
+                min-width: 420px;
+                height   : fit-content;
+                padding  : 20px 15px;
 
                 p {
                     margin-bottom: 10px;
