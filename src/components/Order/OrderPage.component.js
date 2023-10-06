@@ -7,6 +7,7 @@ import axios from 'axios';
 import { ORDER_PAY_RESET } from '../../Redux/Constants/OrderConstants';
 import { PayPalButton } from "react-paypal-button-v2";
 import { Button, Form, Spinner } from 'react-bootstrap';
+import { listAPIs } from '../../Redux/Actions/API/ListAPIs';
 
 export default function OrderPage() {
     const dispatch = useDispatch();
@@ -24,7 +25,7 @@ export default function OrderPage() {
 
     useEffect(() => {
         const addPayPalScript = async () => {
-            const { data } = await axios.get("http://localhost:8000/v1/eco/config/paypal")
+            const { data } = await axios.get(listAPIs.PAYMENT_PAYPAL)
             let clientId = data.data;
             const script = document.createElement("script");
             script.type = "text/javascript";

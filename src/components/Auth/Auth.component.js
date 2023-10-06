@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 
 import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
@@ -22,6 +23,7 @@ class Auth extends Component {
 
     handleOnClickLogout = () => {
         this.props.userLogoutAction();
+        this.props.history.push('/home');
     }
 
     handleCloseMenu = () => {
@@ -82,4 +84,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Auth);
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Auth));

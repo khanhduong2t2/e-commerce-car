@@ -1,5 +1,6 @@
 import axios from 'axios';
 import Cookies from 'js-cookie';
+import { listAPIs } from '../API/ListAPIs';
 
 export const getAccessTokenCommon = async () => {
     const getAccessToken = Cookies.get('accessToken');
@@ -27,7 +28,7 @@ export const getAccessTokenCommon = async () => {
                 refreshToken
             }
 
-            let { data } = await axios.post('http://localhost:8000/v1/eco/customer/refresh-token', inputData, config);
+            let { data } = await axios.post(listAPIs.REFRESH_TOKEN, inputData, config);
 
             if (data) {
                 let access_data = {

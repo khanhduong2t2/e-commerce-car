@@ -22,7 +22,7 @@ function App() {
     <BrowserRouter>
       <div className="App">
         <Header></Header>
-        <Route path="/" exact={true} component={HomePage}></Route>
+        <Route path={["/", "/home"]} exact={true} component={HomePage}></Route>
         <Route path="/change-info" exact={true} component={ChangeInfo}></Route>
         <Route path="/my-purchase" exact={true} component={Purchase}></Route>
         <Route path="/product/:typeCar" exact={true} component={ProductType}></Route>

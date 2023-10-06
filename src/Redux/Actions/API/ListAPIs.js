@@ -3,6 +3,7 @@ const URL_API = process.env.REACT_APP_URL_API;
 export const listAPIs = {
     LOGIN: `${URL_API}/v1/eco/customer/login`,
     REGISTER: `${URL_API}/v1/eco/customer/register`,
+    REFRESH_TOKEN: `${URL_API}/v1/eco/customer/refresh-token`,
     FORGOT_PASSWORD: `${URL_API}/v1/eco/customer/forgot-password`,
 
     GET_INFO_USER: `${URL_API}/v1/eco/customer/get-info`,
@@ -35,7 +36,9 @@ export const listAPIs = {
 
     RE_ORDER: `${URL_API}/v1/eco/service/re-order`,
     ORDER_PAY: `${URL_API}/v1/eco/service/order-pay`,
+    PAYMENT_PAYPAL: `${URL_API}/v1/eco/config/paypal`,
     CREATE_ORDER: `${URL_API}/v1/eco/service/create-order`,
+
 
     GET_LIST_PRODUCTS: `${URL_API}/v1/eco/product/list-products`,
     DETAIL_PRODUCT: `${URL_API}/v1/eco/product/detail-product/`,
