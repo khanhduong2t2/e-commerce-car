@@ -382,10 +382,10 @@ export default function Purchase() {
                             loadingCancel ?
                                 <Spinner animation="border" variant="primary" />
                                 :
-                                <>
+                                <div className="contain-button">
                                     <button className="btn-cancel" onClick={() => handleConfirmCancel(orderCancel.id)}>{content_lang.confirm_form}</button>
                                     <button onClick={() => handleClosePopup()}>{content_lang.cancel_form}</button>
-                                </>
+                                </div>
                         }
                     </div>
                 </div>

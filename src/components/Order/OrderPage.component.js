@@ -1,16 +1,21 @@
-import React, { useEffect, useState } from 'react';
-import Table from 'react-bootstrap/Table';
-import { useDispatch, useSelector } from 'react-redux';
-import { formattedAmount } from '../../helpers/format_money';
-import { getOrderWaiting, payOrder } from '../../Redux/Actions/OrderActions';
 import axios from 'axios';
-import { ORDER_PAY_RESET } from '../../Redux/Constants/OrderConstants';
+import { useHistory } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
 import { PayPalButton } from "react-paypal-button-v2";
+import { useDispatch, useSelector } from 'react-redux';
+import Table from 'react-bootstrap/Table';
 import { Button, Form, Spinner } from 'react-bootstrap';
+
+import { formattedAmount } from '../../helpers/format_money';
+
 import { listAPIs } from '../../Redux/Actions/API/ListAPIs';
+import { ORDER_PAY_RESET } from '../../Redux/Constants/OrderConstants';
+import { getOrderWaiting, payOrder } from '../../Redux/Actions/OrderActions';
 
 export default function OrderPage() {
     const dispatch = useDispatch();
+    let history = useHistory();
+
     const [sdkReady, setSdkReady] = useState(false);
     const [isPayInCash, setIsPayInCash] = useState(false);
 
@@ -50,14 +55,18 @@ export default function OrderPage() {
         } else {
             dispatch({ type: ORDER_PAY_RESET })
         }
-    }, [dispatch, successPay, order, infoUser, loading, error]);
+
+        if (successPay) {
+            history.push("/my-purchase")
+        }
+    }, [dispatch, successPay, order, infoUser, loading, error, history]);
 
     const successPaymentHandler = (is_paid) => {
         dispatch(payOrder(order._id, infoUser.id, is_paid, "TRANSFER"))
     }
 
     const orderWithCash = () => {
-        dispatch(payOrder(order._id, infoUser.id, false, "CASH"))
+        dispatch(payOrder(order._id, infoUser.id, false, "CASH"));
     }
 
     const handleClickCash = (e) => {

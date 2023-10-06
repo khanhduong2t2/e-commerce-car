@@ -9,6 +9,7 @@ import {
     ORDER_PAY_FAIL, ORDER_PAY_REQUEST, ORDER_PAY_SUCCESS,
     RE_ORDER_FAIL, RE_ORDER_REQUEST, RE_ORDER_SUCCESS
 } from "../Constants/OrderConstants";
+import { getListCart } from "./CartActions";
 
 export const createOrder = (customer_id, list_carts, cost, total_price, code_promotion, address, phone) => async (dispatch) => {
     try {
@@ -133,6 +134,7 @@ export const payOrder = (id_order, customer_id, is_paid, payment_type) => async 
                 payload: data.message
             })
         }
+        dispatch(getListCart(customer_id))
     } catch (error) {
         dispatch({
             type: ORDER_PAY_FAIL,

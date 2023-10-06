@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Checkbox } from 'antd';
+import { toast } from 'react-toastify';
 import Form from 'react-bootstrap/Form';
 import { CiTrash } from "react-icons/ci";
 import Table from 'react-bootstrap/Table';
@@ -7,15 +8,17 @@ import { useHistory } from 'react-router-dom';
 import { Button, Spinner } from 'react-bootstrap';
 import { FaRegWindowClose } from "react-icons/fa";
 import { useDispatch, useSelector } from 'react-redux';
+
+import { textLanguage } from '../../util/text_language';
 import { formattedAmount } from '../../helpers/format_money';
 
 import Popup from './Popup.component';
 import QuantityControl from './QuantityControl.component';
 
 import { createOrder } from '../../Redux/Actions/OrderActions';
+import { getSuggestAddress } from '../../Redux/Actions/InfoUserActions';
 import { getListPromotions } from '../../Redux/Actions/PromotionActions';
 import { getListCart, removeItemCart, updateSelected } from "../../Redux/Actions/CartActions";
-import { getSuggestAddress } from '../../Redux/Actions/InfoUserActions';
 
 
 export default function ListCart() {
@@ -26,6 +29,7 @@ export default function ListCart() {
 
     const language = useSelector(state => state.language);
     const { lang } = language;
+    let content = lang === "en" ? textLanguage.EN : textLanguage.VI;
 
     const userLogin = useSelector(state => state.userLogin);
     const { infoUser } = userLogin;
@@ -119,8 +123,16 @@ export default function ListCart() {
             }
         })
         if (list_carts.length > 0 && total_price !== null) {
-            dispatch(createOrder(infoUser.id, list_carts, priceSelected, total_price, codePromotion, address, phone))
-            history.push("/order")
+            if (address && phone) {
+                dispatch(createOrder(infoUser.id, list_carts, priceSelected, total_price, codePromotion, address, phone))
+                history.push("/order")
+            } else {
+                toast.warning(content.require_address,
+                    {
+                        autoClose: 3000,
+                    }
+                )
+            }
         } else {
             alert(lang === 'en' ? 'You have not selected a product yet!' : 'Bạn chưa chọn sản phẩm!')
         }

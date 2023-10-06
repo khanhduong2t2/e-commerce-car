@@ -58,6 +58,9 @@ const textLanguage = {
         cancel_form: "Không",
         confirm_form: "Xác nhận",
 
+        //Cart
+        require_address: "Vui lòng điền đầy đủ thông tin giao hàng !",
+
         //Error
         error_message: "Có lỗi xảy ra! Bạn vui lòng thử lại sau",
         require_feedback: "Vui lòng cho đánh giá !"
@@ -121,6 +124,9 @@ const textLanguage = {
         cancel_question: "Are you sure you want to cancel ?",
         cancel_form: "No",
         confirm_form: "Yes",
+
+        //Cart
+        require_address: "Please fill in complete delivery information !",
 
         //Error
         error_message: "Something wrong ! Let's try again.",

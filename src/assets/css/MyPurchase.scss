@@ -181,6 +181,7 @@
         border       : 2px solid #00ADEF;
         border-radius: 5px;
         width        : 35%;
+        min-width    : 622px;
         height       : 427px;
         padding      : 20px 30px;
 
@@ -259,8 +260,17 @@
     }
 
     .form-cancel {
+        width: 437px;
+
         p {
             margin-bottom: 30px;
+        }
+
+        .contain-button {
+            display        : flex;
+            width          : 100%;
+            flex-direction : row;
+            justify-content: space-between;
         }
     }
 }
