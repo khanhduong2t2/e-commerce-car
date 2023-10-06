@@ -297,8 +297,23 @@
 
         .popup {
             .form-rate {
-                width : 80%;
-                height: fit-content;
+                width  : 80%;
+                height : fit-content;
+                padding: 20px 15px;
+
+                p {
+                    margin-bottom: 10px;
+                }
+
+                .fast-ans {
+                    display       : flex;
+                    flex-direction: row;
+                    flex-wrap     : wrap;
+                }
+
+                button {
+                    width: 45%;
+                }
             }
 
             .form-cancel {
