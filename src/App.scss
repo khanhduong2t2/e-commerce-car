@@ -252,104 +252,6 @@ $color-menu: #1E2132;
     }
 }
 
-// Change Info
-#container-info {
-    width          : 100vw;
-    margin-top     : 12%;
-    margin-bottom  : 9%;
-    display        : flex;
-    justify-content: center;
-
-    #tab-info {
-        width        : 40%;
-        margin-bottom: 20px;
-        padding      : 20px 6px 10px 6px;
-        box-shadow   : rgba(0, 0, 0, 0.24) 0px 3px 8px;
-        border-radius: 10px;
-
-        .container-title {
-            padding: none;
-
-            .flex-column {
-                .title-change {
-                    background-color: #fff;
-                    margin-bottom   : 10px;
-
-                    .nav-link {
-                        color: #635f5f;
-                    }
-
-                    .active {
-                        background-color: #fff;
-                        color           : #000;
-                        box-shadow      : rgba(0, 0, 0, 0.24) 0px 3px 8px;
-                    }
-                }
-            }
-        }
-
-        .container-info {
-            padding-right: 20px;
-
-            .form-info {
-                margin         : 0px 10px 35px 40px;
-                display        : flex;
-                justify-content: space-between;
-
-                .item-input {
-                    margin         : 20px 10px 52px 10px;
-                    display        : flex;
-                    justify-content: space-between;
-                    align-items    : center;
-
-                    label {
-                        font-weight: 500;
-                    }
-
-                    input {
-                        border       : 1px solid #5a5a5a;
-                        border-radius: 10px;
-                        margin-left  : 40px;
-                        padding      : 7px 20px;
-                        border-radius: 25px;
-                        width        : 400px;
-                    }
-                }
-
-                .group-btn {
-                    display        : flex;
-                    height         : 50px;
-                    justify-content: flex-start;
-
-                    .btn-save {
-                        height       : 40px;
-                        border-radius: 15px;
-                        width        : 150px;
-                        margin-right : 20px;
-                    }
-
-                    p {
-                        display        : flex;
-                        justify-content: center;
-                        flex-direction : column;
-                        height         : 40px;
-                        line-height    : 22px;
-                        margin-bottom  : 0px;
-                        color          : rgb(247, 24, 24);
-                    }
-                }
-
-
-                .change-password {
-                    input {
-                        width: 300px !important;
-                    }
-                }
-            }
-        }
-    }
-}
-
 // Order
 #container-order {
     margin-top   : 8%;
@@ -706,6 +608,7 @@ $color-menu: #1E2132;
 @import url('./assets/css/News.scss');
 @import url('./assets/css/Certified.scss');
 @import url('./assets/css/Contact.scss');
+@import url('./assets/css/ChangeInfo.scss');
 @import url('./assets/css/ListProduct.scss');
 @import url('./assets/css/DetailProduct.scss');
 @import url('./assets/css/Footer.scss');
