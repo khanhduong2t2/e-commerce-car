@@ -375,16 +375,16 @@ export default function Purchase() {
             }
             {showPopup &&
                 <div className="popup">
-                    <div className="popup-content">
-                        <p>Bạn có chắc chắn muốn hủy không?</p>
-                        <p>Đơn hàng #{orderCancel.index + 1}</p>
+                    <div className="popup-content form-cancel">
+                        <p>{content_lang.cancel_question}</p>
+                        <p><strong>{content_lang.stt_items} #{orderCancel.index + 1}</strong></p>
                         {
                             loadingCancel ?
                                 <Spinner animation="border" variant="primary" />
                                 :
                                 <>
-                                    <button className="btn-cancel" onClick={() => handleConfirmCancel(orderCancel.id)}>Hủy</button>
-                                    <button onClick={() => handleClosePopup()}>Không</button>
+                                    <button className="btn-cancel" onClick={() => handleConfirmCancel(orderCancel.id)}>{content_lang.confirm_form}</button>
+                                    <button onClick={() => handleClosePopup()}>{content_lang.cancel_form}</button>
                                 </>
                         }
                     </div>

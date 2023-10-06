@@ -54,6 +54,10 @@ const textLanguage = {
         reorder: "Đặt lại",
         dont_have_items: "Bạn chưa có đơn hàng nào !",
 
+        cancel_question: "Bạn có chắc chắn muốn hủy không ?",
+        cancel_form: "Không",
+        confirm_form: "Xác nhận",
+
         //Error
         error_message: "Có lỗi xảy ra! Bạn vui lòng thử lại sau",
         require_feedback: "Vui lòng cho đánh giá !"
@@ -113,6 +117,10 @@ const textLanguage = {
         review: "Review",
         reorder: "Reorder",
         dont_have_items: `You don't have any orders yet!`,
+
+        cancel_question: "Are you sure you want to cancel ?",
+        cancel_form: "No",
+        confirm_form: "Yes",
 
         //Error
         error_message: "Something wrong ! Let's try again.",

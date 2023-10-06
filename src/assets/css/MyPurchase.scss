@@ -256,12 +256,12 @@
 @media (max-width: 600px) {
     #container-purchase {
         width     : 140vw;
-        max-width : 530px;
+        max-width : 525px;
         margin-top: 100px;
 
         #purchase-mobile {
             width    : 100%;
-            max-width: 450px;
+            max-width: 525px;
 
             .item-purchase {
                 width        : 100%;
@@ -291,6 +291,22 @@
                         width : 185px;
                         height: 50px;
                     }
+                }
+            }
+        }
+
+        .popup {
+            .form-rate {
+                width : 80%;
+                height: fit-content;
+            }
+
+            .form-cancel {
+                width : 80%;
+                height: 28%;
+
+                button {
+                    padding: 10px 10px;
                 }
             }
         }
