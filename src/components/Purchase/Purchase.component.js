@@ -1,75 +1,45 @@
-import React, { useEffect, useState } from 'react'
+import { useHistory } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { toast } from 'react-toastify';
-import { Button, Spinner, Table } from 'react-bootstrap';
 import { SlClose } from "react-icons/sl";
+import { Button, Spinner, Table } from 'react-bootstrap';
+
+import FastAns from '../Feedback/FastAns.component';
+import FaceFeedback from '../Feedback/FaceFeedback.component';
 
 import { formattedAmount } from '../../helpers/format_money';
-import { RESET_CANCEL_PURCHASE } from '../../Redux/Constants/PurchaseConstants';
-import { cancelPurchaseAction, feedbackPurchaseAction, getListPurchase } from '../../Redux/Actions/PurchaseActions';
+import { textLanguage, paymentStatus, paymentType, deliveryStatus } from '../../util/text_language';
 
-import FaceFeedback from '../Feedback/FaceFeedback.component';
-import FastAns from '../Feedback/FastAns.component';
-import { ADD_CONTENT_ANS, RESET_TYPE_FEEL } from '../../Redux/Constants/FeedbackConstant';
-import { useHistory } from 'react-router-dom';
 import { reOrderAction } from '../../Redux/Actions/OrderActions';
 import { RE_ORDER_RESET } from '../../Redux/Constants/OrderConstants';
+import { RESET_CANCEL_PURCHASE } from '../../Redux/Constants/PurchaseConstants';
+import { ADD_CONTENT_ANS, RESET_TYPE_FEEL } from '../../Redux/Constants/FeedbackConstant';
+import { cancelPurchaseAction, feedbackPurchaseAction, getListPurchase } from '../../Redux/Actions/PurchaseActions';
 
 export default function Purchase() {
     const dispatch = useDispatch();
     let history = useHistory();
 
-    let paymentStatus = {
-        PAID: {
-            mess_vi: "Đã thanh toán",
-            mess_en: "Paid",
-        },
-        UNPAID: {
-            mess_vi: "Chưa thanh toán",
-            mess_en: "Unpaid",
-        }
-    }
-
-    let paymentType = {
-        CASH: {
-            mess_vi: "Tiền mặt",
-            mess_en: "Cash",
-        },
-        TRANSFER: {
-            mess_vi: "Chuyển khoản",
-            mess_en: "Transfer",
-        }
-    }
-
-    let deliveryStatus = {
-        UNDELIVERY: {
-            mess_vi: "Đang xử lý",
-            mess_en: "Application received",
-        },
-        PREPARING: {
-            mess_vi: "Đang chuẩn bị đơn hàng",
-            mess_en: "Preparing orders",
-        },
-        DELIVERING: {
-            mess_vi: "Đang vận chuyển",
-            mess_en: "Being transported",
-        },
-        DELIVERED: {
-            mess_vi: "Đã nhận hàng",
-            mess_en: "Goods received",
-        }
-    }
-
     const [showPopup, setShowPopup] = useState(false);
-    const [showFeedback, setShowFeedback] = useState(false);
     const [orderCancel, setOrderCancel] = useState(null);
+    const [showFeedback, setShowFeedback] = useState(false);
     const [orderFeedback, setOrderFeedback] = useState(null);
     const [viewFeedback, setViewFeedback] = useState({ data: null, disable_feedback: false });
 
+    const language = useSelector((state) => state.language);
+    let { lang } = language;
+    let content_lang = lang === "en" ? textLanguage.EN : textLanguage.VI;
 
     const userLogin = useSelector(state => state.userLogin);
     const { infoUser } = userLogin;
+
+    const reOrder = useSelector(state => state.reOrder);
+    const { isSuccess, data: dataReOrder } = reOrder;
+
+    const FBPrivate = useSelector(state => state.FBPrivate);
+    const { type_feel, list_ans, content } = FBPrivate;
 
     const listPurchases = useSelector(state => state.listPurchases);
     const { isLoading, errMessage, list_purchases } = listPurchases;
@@ -79,12 +49,6 @@ export default function Purchase() {
 
     const feedbackPurchase = useSelector(state => state.feedbackPurchase);
     const { isLoading: loadingFeedback, purchaseFeedback, message: messageFeedback } = feedbackPurchase;
-
-    const FBPrivate = useSelector(state => state.FBPrivate);
-    const { type_feel, list_ans, content } = FBPrivate;
-
-    const reOrder = useSelector(state => state.reOrder);
-    const { isSuccess, data: dataReOrder } = reOrder;
 
     useEffect(() => {
         if (infoUser && infoUser.id) {
@@ -111,10 +75,9 @@ export default function Purchase() {
 
     const handleConfirmCancel = (purchase_id) => {
         if (infoUser && purchase_id) {
-            let lang = "vi";
             dispatch(cancelPurchaseAction(infoUser.id, purchase_id, lang, orderCancel.index))
         } else {
-            toast.error("Có lỗi xảy ra! Bạn vui lòng thử lại sau", {
+            toast.error(content_lang.error_message, {
                 autoClose: 3000
             })
         }
@@ -123,25 +86,32 @@ export default function Purchase() {
     const handleClosePopup = () => {
         setShowPopup(false);
         setShowFeedback(false);
-    };
-
-    const handleClickFeedback = (data) => {
         dispatch({
             type: RESET_TYPE_FEEL
         })
+    };
+
+    const handleClickFeedback = (data) => {
+        setViewFeedback({
+            data: null,
+            disable_feedback: false
+        })
         setOrderFeedback(data);
         setShowFeedback(true);
+        dispatch({
+            type: RESET_TYPE_FEEL
+        })
     }
 
     const handleClickViewFeedback = (data) => {
-        dispatch({
-            type: RESET_TYPE_FEEL
-        });
         setViewFeedback({
             data: data,
             disable_feedback: true
         })
         setShowFeedback(true);
+        dispatch({
+            type: RESET_TYPE_FEEL
+        });
     }
 
     const handleChangeContent = (e) => {
@@ -156,16 +126,15 @@ export default function Purchase() {
     const clickSendFeedback = (purchase_id) => {
         if (infoUser && purchase_id) {
             if (!type_feel && (!list_ans || list_ans.length === 0) && !content) {
-                toast.error("Vui lòng cho đánh giá !")
+                toast.error(content_lang.require_feedback)
             } else {
-                let lang = "vi";
                 let feedback = {
                     type_feel, list_ans, content
                 }
                 dispatch(feedbackPurchaseAction(infoUser.id, purchase_id, feedback, lang, orderFeedback.index));
             }
         } else {
-            toast.error("Có lỗi xảy ra! Bạn vui lòng thử lại sau", {
+            toast.error(content_lang.error_message, {
                 autoClose: 3000
             })
         }
@@ -176,7 +145,7 @@ export default function Purchase() {
             dispatch(reOrderAction(infoUser.id, id_order))
 
         } else {
-            toast.error("Có lỗi xảy ra! Bạn vui lòng thử lại sau", {
+            toast.error(content_lang.error_message, {
                 autoClose: 3000
             })
         }
@@ -191,112 +160,194 @@ export default function Purchase() {
         }
     }, [isSuccess, dataReOrder, history, dispatch])
 
+    //Mobile
+    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+    useEffect(() => {
+        const handleResize = () => {
+            setWindowWidth(window.innerWidth);
+        };
+        window.addEventListener('resize', handleResize);
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
+
     return (
         <div id="container-purchase">
-            <Table striped bordered hover>
-                <thead>
-                    <tr>
-                        <th className="col-stt">Đơn Hàng</th>
-                        <th className="col-name">Sản phẩm</th>
-                        <th className="col-price">Giá</th>
-                        <th className="col-sum-price">Tổng giá trị đơn hàng</th>
-                        <th className="col-payment">Thanh toán</th>
-                        <th className="col-status">Trạng thái</th>
-                        <th className="col-action">Hành động</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {
-                        isLoading ?
+            {
+                windowWidth >= 600 ?
+                    <Table striped bordered hover>
+                        <thead>
                             <tr>
-                                <td colSpan="7" style={{ "textAlign": "center", "padding": "20px 0px" }}>
-                                    <Spinner animation="border" variant="primary" />
-                                </td>
+                                <th className="col-stt">{content_lang.stt_items}</th>
+                                <th className="col-name">{content_lang.name_items}</th>
+                                <th className="col-price">{content_lang.price_items}</th>
+                                <th className="col-sum-price">{content_lang.total_price}</th>
+                                <th className="col-payment">{content_lang.payment_status}</th>
+                                <th className="col-status">{content_lang.order_status}</th>
+                                <th className="col-action">{content_lang.actions}</th>
                             </tr>
-                            : (
-                                errMessage ?
+                        </thead>
+                        <tbody>
+                            {
+                                isLoading ?
                                     <tr>
                                         <td colSpan="7" style={{ "textAlign": "center", "padding": "20px 0px" }}>
-                                            <p>Có lỗi xảy ra !</p>
+                                            <Spinner animation="border" variant="primary" />
                                         </td>
                                     </tr>
                                     : (
+                                        errMessage ?
+                                            <tr>
+                                                <td colSpan="7" style={{ "textAlign": "center", "padding": "20px 0px" }}>
+                                                    <p>{content_lang.error_message}</p>
+                                                </td>
+                                            </tr>
+                                            : (
+                                                list_purchases && list_purchases.length > 0
+                                                    ? list_purchases.map((item, index) => {
+                                                        return (
+                                                            <tr key={index} >
+                                                                <td className="col-stt">#{index + 1}</td>
+                                                                <td className="col-name">
+                                                                    {
+                                                                        item.list_carts.map((item, index) => {
+                                                                            return (
+                                                                                <div className="contain-item" key={index}>
+                                                                                    <img width="100px" height="50px" src={item.link_image[0]} alt="img" />
+                                                                                    <p>{item.name}&nbsp; <i>x{item.quantity}</i></p>
+                                                                                </div>
+                                                                            )
+                                                                        })
+                                                                    }
+                                                                </td>
+                                                                <td className="col-price">
+                                                                    {
+                                                                        item.list_carts.map((item, index) => {
+                                                                            return (
+                                                                                <p key={index}>{item.price}&nbsp; <i>x{item.quantity}</i></p>
+                                                                            )
+                                                                        })
+                                                                    }
+                                                                </td>
+                                                                <td className="col-sum-price">
+                                                                    <p style={{ "textDecoration": "line-through" }}>{formattedAmount(item.cost)}</p>
+                                                                    <p>{content_lang.discount_code}: {item.code_promotion}</p>
+                                                                    <p>{content_lang.total}: {formattedAmount(item.total_price)}</p>
+                                                                </td>
+                                                                <td className="col-payment">
+                                                                    {
+                                                                        lang === "en" ?
+                                                                            <p>{paymentType[item.payment_type].mess_en} - {paymentStatus[item.payment_status].mess_en}</p>
+                                                                            :
+                                                                            <p>{paymentType[item.payment_type].mess_vi} - {paymentStatus[item.payment_status].mess_vi}</p>
+                                                                    }
+                                                                </td>
+                                                                <td className="col-status">
+                                                                    {
+                                                                        lang === "en" ?
+                                                                            <p>{item.order_status === "CANCELED" ? content_lang.canceled : deliveryStatus[item.delivery_status].mess_en}</p>
+                                                                            :
+                                                                            <p>{item.order_status === "CANCELED" ? content_lang.canceled : deliveryStatus[item.delivery_status].mess_vi}</p>
+                                                                    }
+                                                                </td>
+                                                                <td className="col-action">
+                                                                    {
+                                                                        item.delivery_status !== "DELIVERED" && !["SUCCEED", "CANCELED", "ERROR"].includes(item.order_status) ?
+                                                                            <p className="cancel-order"
+                                                                                onClick={() => handleCancelClick({ id: item._id, index: index })}
+                                                                            >{content_lang.cancel_item}</p>
+                                                                            :
+                                                                            <>
+                                                                                {
+                                                                                    item.feedback && item.feedback.type_feel ?
+                                                                                        <Button className="btn-feedback" variant="primary"
+                                                                                            onClick={() => handleClickViewFeedback(item.feedback)}
+                                                                                        >{content_lang.see_review}</Button>
+                                                                                        :
+                                                                                        <Button className="btn-feedback" variant="primary"
+                                                                                            onClick={() => handleClickFeedback({ id: item._id, index: index })}
+                                                                                        >{content_lang.review}</Button>
+                                                                                }
+
+                                                                                <Button className="btn-reorder" variant="primary"
+                                                                                    onClick={() => handleClickReOrder(item._id)}
+                                                                                >{content_lang.reorder}</Button>
+                                                                            </>
+                                                                    }
+                                                                </td>
+                                                            </tr>
+                                                        )
+                                                    })
+                                                    :
+                                                    < tr >
+                                                        <td colSpan="7" style={{ "textAlign": "center", "padding": "20px 0px" }}>
+                                                            <p>{content_lang.dont_have_items}</p>
+                                                        </td>
+                                                    </tr>
+                                            )
+                                    )
+                            }
+                        </tbody>
+                    </Table>
+                    :
+                    <div id="purchase-mobile">
+                        {
+                            isLoading ?
+                                <Spinner animation="border" variant="primary" />
+                                :
+                                <>
+                                    {
                                         list_purchases && list_purchases.length > 0
                                             ? list_purchases.map((item, index) => {
                                                 return (
-                                                    <tr key={index} >
-                                                        <td className="col-stt">#{index + 1}</td>
-                                                        <td className="col-name">
-                                                            {
-                                                                item.list_carts.map((item, index) => {
-                                                                    return (
-                                                                        <div className="contain-item" key={index}>
-                                                                            <img width="100px" height="50px" src={item.link_image[0]} alt="img" />
-                                                                            <p>{item.name}&nbsp; <i>x{item.quantity}</i></p>
-                                                                        </div>
-                                                                    )
-                                                                })
-                                                            }
-                                                        </td>
-                                                        <td className="col-price">
-                                                            {
-                                                                item.list_carts.map((item, index) => {
-                                                                    return (
-                                                                        <p key={index}>{item.price}&nbsp; <i>x{item.quantity}</i></p>
-                                                                    )
-                                                                })
-                                                            }
-                                                        </td>
-                                                        <td className="col-sum-price">
-                                                            <p style={{ "textDecoration": "line-through" }}>{formattedAmount(item.cost)}</p>
-                                                            <p>Mã giảm: {item.code_promotion}</p>
-                                                            <p>Tổng: {formattedAmount(item.total_price)}</p>
-                                                        </td>
-                                                        <td className="col-payment">
-                                                            <p>{paymentType[item.payment_type].mess_vi} - {paymentStatus[item.payment_status].mess_vi}</p>
-                                                        </td>
-                                                        <td className="col-status">
-                                                            <p>{item.order_status === "CANCELED" ? "Đã được hủy" : deliveryStatus[item.delivery_status].mess_vi}</p>
-                                                        </td>
-                                                        <td className="col-action">
-                                                            {
-                                                                item.delivery_status !== "DELIVERED" && !["SUCCEED", "CANCELED", "ERROR"].includes(item.order_status) ?
-                                                                    <p className="cancel-order"
-                                                                        onClick={() => handleCancelClick({ id: item._id, index: index })}
-                                                                    >Hủy đơn hàng</p>
-                                                                    :
-                                                                    <>
-                                                                        {
-                                                                            item.feedback && item.feedback.type_feel ?
-                                                                                <Button className="btn-feedback" variant="primary"
-                                                                                    onClick={() => handleClickViewFeedback(item.feedback)}
-                                                                                >Xem đánh giá</Button>
-                                                                                :
-                                                                                <Button className="btn-feedback" variant="primary"
-                                                                                    onClick={() => handleClickFeedback({ id: item._id, index: index })}
-                                                                                >Đánh giá</Button>
-                                                                        }
-
-                                                                        <Button className="btn-reorder" variant="primary"
-                                                                            onClick={() => handleClickReOrder(item._id)}
-                                                                        >Đặt lại</Button>
-                                                                    </>
-                                                            }
-                                                        </td>
-                                                    </tr>
+                                                    <div className="item-purchase" key={index}>
+                                                        <p>Đơn hàng: #{index + 1}</p>
+                                                        {
+                                                            item.list_carts.map((item, index) => {
+                                                                return (
+                                                                    <div className="item-product" key={index}>
+                                                                        <img width="100px" height="50px" src={item.link_image[0]} alt="img" />
+                                                                        <p className="name-price">
+                                                                            <span>{item.name}&nbsp; <i>x{item.quantity}</i></span>
+                                                                            <span key={index}>{item.price}&nbsp; <i>x{item.quantity}</i></span>
+                                                                        </p>
+                                                                    </div>
+                                                                )
+                                                            })
+                                                        }
+                                                        <div className="contain-status">
+                                                            <div>
+                                                                <p style={{ "textDecoration": "line-through" }}>{formattedAmount(item.cost)}</p>
+                                                                <p>{content_lang.discount_code}: {item.code_promotion}</p>
+                                                                <p>{content_lang.total}: {formattedAmount(item.total_price)}</p>
+                                                            </div>
+                                                            {/* <div>
+                                                                {
+                                                                    lang === "en" ?
+                                                                        <>
+                                                                            <p>{paymentType[item.payment_type].mess_en} - {paymentStatus[item.payment_status].mess_en}</p>
+                                                                            <p>{item.order_status === "CANCELED" ? content_lang.canceled : deliveryStatus[item.delivery_status].mess_en}</p>
+                                                                        </>
+                                                                        :
+                                                                        <>
+                                                                            <p>{paymentType[item.payment_type].mess_vi} - {paymentStatus[item.payment_status].mess_vi}</p>
+                                                                            <p>{item.order_status === "CANCELED" ? content_lang.canceled : deliveryStatus[item.delivery_status].mess_vi}</p>
+                                                                        </>
+                                                                }
+                                                            </div> */}
+                                                        </div>
+                                                    </div>
                                                 )
-                                            })
+                                            }
+                                            )
                                             :
-                                            < tr >
-                                                <td colSpan="7" style={{ "textAlign": "center", "padding": "20px 0px" }}>
-                                                    <p>Bạn chưa có đơn hàng nào !</p>
-                                                </td>
-                                            </tr>
-                                    )
-                            )
-                    }
-                </tbody>
-            </Table>
+                                            <p></p>
+                                    }
+                                </>
+                        }
+                    </div>
+            }
             {showPopup &&
                 <div className="popup">
                     <div className="popup-content">

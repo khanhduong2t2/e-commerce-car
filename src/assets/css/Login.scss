@@ -238,13 +238,7 @@ sans-serif;
         .container-form {
             width : 100vw;
             height: 100vh;
-        }
-    }
-}
 
-@media (max-width: 1200px) {
-    #header-container {
-        .container-form {
             form {
                 transform: translate(-50%, -59%) scale(0.9);
 
@@ -261,9 +255,31 @@ sans-serif;
 
 @media (max-width: 600px) {
     #header-container {
+        width  : 140vw;
+        padding: 10px 20px;
+
+        #logo {
+            margin-right: 0px;
+            min-width   : 90px;
+        }
+
         .container-form {
             width : 140vw;
             height: 140vh;
+        }
+    }
+
+    .dropdown {
+        .dropdown-menu.show {
+            span {
+                font-size: 16px;
+            }
+
+            #list-drop-brand {
+                li {
+                    font-size: 16px;
+                }
+            }
         }
     }
 }

@@ -36,6 +36,28 @@ const textLanguage = {
         content_24h7: `Tất cả khách hàng sở hữu xe E-Car từ 2/7/2023 được tận hưởng những tiện ích này trong vòng 3 năm
         (tính từ ngày xuất hóa đơn) không giới hạn số lần yêu cầu dịch vụ.`,
 
+        //Purchase
+        stt_items: "Đơn hàng",
+        name_items: "Tên sản phẩm",
+        price_items: "Giá",
+        total_price: "Tổng giá trị đơn hàng",
+        payment_status: "Trạng thái thanh toán",
+        order_status: "Trạng thái đơn hàng",
+        actions: "Hành động",
+
+        discount_code: "Mã giảm",
+        total: "Tổng",
+        canceled: "Đã được hủy",
+        cancel_item: "Hủy đơn hàng",
+        see_review: "Xem đánh giá",
+        review: "Đánh giá",
+        reorder: "Đặt lại",
+        dont_have_items: "Bạn chưa có đơn hàng nào !",
+
+        //Error
+        error_message: "Có lỗi xảy ra! Bạn vui lòng thử lại sau",
+        require_feedback: "Vui lòng cho đánh giá !"
+
     },
     EN: {
         title_login: "Sign in to",
@@ -73,9 +95,75 @@ const textLanguage = {
         content_24h6: `Support delivery of spare keys within a radius of 15km`,
         content_24h7: `All customers who own an E-Car from July 2, 2023 can enjoy these benefits for 3 years
         (calculated from the invoice date) unlimited number of service requests.`,
+
+        //Purchase
+        stt_items: "Items",
+        name_items: "Items name",
+        price_items: "Price",
+        total_price: "Total price",
+        payment_status: "Payment status",
+        order_status: "Order status",
+        actions: "Action",
+
+        discount_code: "Discount code",
+        total: "Total",
+        canceled: "Canceled",
+        cancel_item: "Cancel",
+        see_review: "See review",
+        review: "Review",
+        reorder: "Reorder",
+        dont_have_items: `You don't have any orders yet!`,
+
+        //Error
+        error_message: "Something wrong ! Let's try again.",
+        require_feedback: "Please rate !"
+    }
+}
+
+const paymentStatus = {
+    PAID: {
+        mess_vi: "Đã thanh toán",
+        mess_en: "Paid",
+    },
+    UNPAID: {
+        mess_vi: "Chưa thanh toán",
+        mess_en: "Unpaid",
+    }
+}
+
+const paymentType = {
+    CASH: {
+        mess_vi: "Tiền mặt",
+        mess_en: "Cash",
+    },
+    TRANSFER: {
+        mess_vi: "Chuyển khoản",
+        mess_en: "Transfer",
+    }
+}
+
+const deliveryStatus = {
+    UNDELIVERY: {
+        mess_vi: "Đang xử lý",
+        mess_en: "Application received",
+    },
+    PREPARING: {
+        mess_vi: "Đang chuẩn bị đơn hàng",
+        mess_en: "Preparing orders",
+    },
+    DELIVERING: {
+        mess_vi: "Đang vận chuyển",
+        mess_en: "Being transported",
+    },
+    DELIVERED: {
+        mess_vi: "Đã nhận hàng",
+        mess_en: "Goods received",
     }
 }
 
 module.exports = {
-    textLanguage
+    textLanguage,
+    paymentStatus,
+    paymentType,
+    deliveryStatus
 }
