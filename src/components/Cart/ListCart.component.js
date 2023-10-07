@@ -169,72 +169,115 @@ export default function ListCart() {
         }
     }
 
+    //Mobile
+    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+    useEffect(() => {
+        const handleResize = () => {
+            setWindowWidth(window.innerWidth);
+        };
+        window.addEventListener('resize', handleResize);
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
+
     return (
         <div id="container-list-cart">
-            <Table striped bordered hover>
-                <thead>
-                    <tr>
-                        <th className="col-select">
-                            {
-                                listItem && listItem.length > 0 ?
-                                    <Checkbox checked={selectAll} onChange={handleSelectAllChange}></Checkbox>
-                                    :
-                                    <FaRegWindowClose></FaRegWindowClose>
-                            }
-                        </th>
-                        <th>{lang === "en" ? "Product" : "Sản phẩm"}</th>
-                        <th className="col-quantity">{lang === "en" ? "Quantity" : "Số lượng"}</th>
-                        <th className="col-price">{lang === "en" ? "Price" : "Đơn giá"}</th>
-                        <th className="col-action">{lang === "en" ? "Cancel" : "Hủy bỏ"}</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {
-                        loading ?
+            {
+                windowWidth >= 600 ?
+                    <Table striped bordered hover>
+                        <thead>
                             <tr>
-                                <td colSpan="5" style={{ "textAlign": "center", "padding": "20px 0px" }}>
-                                    <Spinner animation="border" variant="primary" />
-                                </td>
+                                <th className="col-select">
+                                    {
+                                        listItem && listItem.length > 0 ?
+                                            <Checkbox checked={selectAll} onChange={handleSelectAllChange}></Checkbox>
+                                            :
+                                            <FaRegWindowClose></FaRegWindowClose>
+                                    }
+                                </th>
+                                <th>{lang === "en" ? "Product" : "Sản phẩm"}</th>
+                                <th className="col-quantity">{lang === "en" ? "Quantity" : "Số lượng"}</th>
+                                <th className="col-price">{lang === "en" ? "Price" : "Đơn giá"}</th>
+                                <th className="col-action">{lang === "en" ? "Cancel" : "Hủy bỏ"}</th>
                             </tr>
-                            :
-                            (
-                                listItem ?
-                                    (listItem.length > 0 ?
-                                        listItem.map(item => {
-                                            return (
-                                                <tr key={item._id}>
-                                                    <td className="col-select">
-                                                        <Checkbox
-                                                            checked={item.selected}
-                                                            onChange={() => handleCheckBoxChange(item.product_id)}
-                                                        ></Checkbox>
+                        </thead>
+                        <tbody>
+                            {
+                                loading ?
+                                    <tr>
+                                        <td colSpan="5" style={{ "textAlign": "center", "padding": "20px 0px" }}>
+                                            <Spinner animation="border" variant="primary" />
+                                        </td>
+                                    </tr>
+                                    :
+                                    (
+                                        listItem ?
+                                            (listItem.length > 0 ?
+                                                listItem.map(item => {
+                                                    return (
+                                                        <tr key={item._id}>
+                                                            <td className="col-select">
+                                                                <Checkbox
+                                                                    checked={item.selected}
+                                                                    onChange={() => handleCheckBoxChange(item.product_id)}
+                                                                ></Checkbox>
+                                                            </td>
+                                                            <td className="col_name_cart">
+                                                                <img className="img_cart" src={item.productInfo.link_image[0]} alt="img_item" />
+                                                                <p className="name_item">{item.productInfo.name}</p>
+                                                            </td>
+                                                            <td className="col-quantity"><QuantityControl initQuantity={item.quantity} name_item={item.productInfo.name} id_item={item._id} customer_id={infoUser.id} /></td>
+                                                            <td className="col-price">{formattedAmount(+item.productInfo.price * item.quantity)}</td>
+                                                            <td className="col-action"><CiTrash className="icon-trash" onClick={() => handleDeleteCart(item._id)} /></td>
+                                                        </tr>
+                                                    )
+                                                })
+                                                :
+                                                <tr>
+                                                    <td colSpan="5" style={{ "textAlign": "center", "padding": "20px 0px" }}>
+                                                        <p>{lang === "en" ? "You have not selected any products yet!" : "Bạn chưa chọn sản phẩm nào !"}</p>
                                                     </td>
-                                                    <td className="col_name_cart">
-                                                        <img className="img_cart" src={item.productInfo.link_image[0]} alt="img_item" />
-                                                        <p className="name_item">{item.productInfo.name}</p>
-                                                    </td>
-                                                    <td className="col-quantity"><QuantityControl initQuantity={item.quantity} name_item={item.productInfo.name} id_item={item._id} customer_id={infoUser.id} /></td>
-                                                    <td className="col-price">{formattedAmount(+item.productInfo.price * item.quantity)}</td>
-                                                    <td className="col-action"><CiTrash className="icon-trash" onClick={() => handleDeleteCart(item._id)} /></td>
                                                 </tr>
                                             )
-                                        })
-                                        :
-                                        <tr>
-                                            <td colSpan="5" style={{ "textAlign": "center", "padding": "20px 0px" }}>
-                                                <p>{lang === "en" ? "You have not selected any products yet!" : "Bạn chưa chọn sản phẩm nào !"}</p>
-                                            </td>
-                                        </tr>
+                                            : null
                                     )
-                                    : null
+                            }
+                        </tbody>
+                    </Table>
+                    :
+                    (listItem && listItem.length > 0 ?
+                        listItem.map(item => {
+                            return (
+                                <div className="item-cart">
+                                    <Checkbox
+                                        checked={item.selected}
+                                        onChange={() => handleCheckBoxChange(item.product_id)}
+                                    ></Checkbox>
+                                    <div className="info-item">
+                                        <img className="img_cart" src={item.productInfo.link_image[0]} alt="img_item" />
+                                        <div className="name-quantity">
+                                            <p className="name_item">{item.productInfo.name}</p>
+                                            <QuantityControl initQuantity={item.quantity} name_item={item.productInfo.name} id_item={item._id} customer_id={infoUser.id} />
+                                        </div>
+                                    </div>
+                                    <div className="item-price">{content.price_items}: {formattedAmount(+item.productInfo.price * item.quantity)}</div>
+                                    <div className="item-action" onClick={() => handleDeleteCart(item._id)} >
+                                        <CiTrash className="icon-trash" />
+                                    </div>
+                                </div>
                             )
-                    }
-                </tbody>
-            </Table>
+                        })
+                        :
+                        <p>{lang === "en" ? "You have not selected any products yet!" : "Bạn chưa chọn sản phẩm nào !"}</p>
+                    )
+            }
+
             {
                 listItem && listItem.length > 0 &&
                 <div id="cart-below">
                     <div className="form-address">
+                        <p>{content.delivery_address}</p>
                         <input defaultValue={address} onChange={(e) => handleChangeFormAddress(e, 'address')} />
                         <input defaultValue={phone} onChange={(e) => handleChangeFormAddress(e, 'phone')} />
                     </div>

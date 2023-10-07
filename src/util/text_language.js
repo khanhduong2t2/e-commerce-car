@@ -59,6 +59,7 @@ const textLanguage = {
         confirm_form: "Xác nhận",
 
         //Cart
+        delivery_address: "Địa chỉ nhận hàng",
         require_address: "Vui lòng điền đầy đủ thông tin giao hàng !",
 
         //Error
@@ -126,6 +127,7 @@ const textLanguage = {
         confirm_form: "Yes",
 
         //Cart
+        delivery_address: "Address",
         require_address: "Please fill in complete delivery information !",
 
         //Error
