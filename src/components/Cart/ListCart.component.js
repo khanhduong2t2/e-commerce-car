@@ -250,10 +250,11 @@ export default function ListCart() {
                         listItem.map(item => {
                             return (
                                 <div className="item-cart">
-                                    <Checkbox
+                                    <input
+                                        type="checkbox"
                                         checked={item.selected}
                                         onChange={() => handleCheckBoxChange(item.product_id)}
-                                    ></Checkbox>
+                                    ></input>
                                     <div className="info-item">
                                         <img className="img_cart" src={item.productInfo.link_image[0]} alt="img_item" />
                                         <div className="name-quantity">
