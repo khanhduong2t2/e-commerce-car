@@ -116,12 +116,19 @@ export default function OrderPage() {
                                     <div className="summary-cart" style={{ "justifyContent": "space-between" }}>
                                         <div style={{ "display": "flex" }}>
                                             <p>Tổng thanh toán:</p>
-                                            <p style={{ 'fontWeight': '500', "textDecoration": "line-through" }}>{formattedAmount(+order.cost)}</p>
-                                            <p style={{ 'fontWeight': '500' }}>{formattedAmount(+order.total_price)}</p>
-                                            <p>Mã giảm:</p>
-                                            <p style={{ 'fontWeight': '500' }}> {order.code_promotion}</p>
-                                        </div>
 
+                                            {
+                                                order.code_promotion ?
+                                                    <>
+                                                        <p style={{ 'fontWeight': '500', "textDecoration": "line-through" }}>{formattedAmount(+order.cost)}</p>
+                                                        <p style={{ 'fontWeight': '500' }}>{formattedAmount(+order.total_price)}</p>
+                                                        <p>Mã giảm:</p>
+                                                        <p style={{ 'fontWeight': '500' }}> {order.code_promotion}</p>
+                                                    </>
+                                                    :
+                                                    <p style={{ 'fontWeight': '500' }}>{formattedAmount(+order.total_price)}</p>
+                                            }
+                                        </div>
                                         <Form.Check
                                             type="checkbox"
                                             id='abc'

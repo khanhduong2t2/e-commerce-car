@@ -131,113 +131,6 @@ $color-menu: #1E2132;
     }
 }
 
-// Order
-#container-order {
-    margin-top   : 8%;
-    padding      : 0 14%;
-    margin-bottom: 8%;
-
-    table {
-        thead {
-            th {
-                text-align: center;
-            }
-
-            .col-select {
-                width: 5%;
-            }
-
-            .col-quantity {
-                width: 12%;
-            }
-
-            .col-price {
-                width: 22%;
-            }
-        }
-
-        tbody {
-            .col-select {
-                width         : 5%;
-                text-align    : center;
-                vertical-align: middle;
-            }
-
-            .col-quantity {
-                width         : 12%;
-                vertical-align: middle;
-                text-align    : center;
-            }
-
-            .col-price {
-                width         : 22%;
-                font-size     : 18px;
-                text-align    : center;
-                vertical-align: middle;
-            }
-        }
-
-    }
-
-    .col_name_cart {
-        display: flex;
-
-        .img_cart {
-            width       : 22%;
-            margin-left : 22%;
-            margin-right: 4%;
-        }
-
-        .name_item {
-            display        : flex;
-            align-items    : center;
-            justify-content: center;
-            font-size      : 18px;
-            font-weight    : 500;
-            margin         : 0;
-        }
-    }
-
-    .summary-cart {
-        display        : flex;
-        justify-content: flex-end;
-        margin-top     : 60px;
-        margin-bottom  : 40px;
-
-        p {
-            display    : flex;
-            align-items: flex-end;
-            font-size  : 18px;
-            margin     : 0px 10px;
-        }
-
-        .select-promotion {
-            display: flex;
-            width  : 250px;
-        }
-
-        .form-check {
-            font-size  : 18px;
-            font-weight: 500;
-
-            input {
-                border: 1px solid rgb(0, 140, 255);
-            }
-        }
-    }
-
-    .btn-order {
-        text-align: end;
-
-        button {
-            width      : 35%;
-            height     : 60px;
-            font-size  : 19px;
-            font-weight: 500;
-        }
-    }
-}
-
 @import url('./assets/css/Header.scss');
 @import url('./assets/css/Login.scss');
 @import url('./assets/css/Search.scss');
@@ -248,6 +141,7 @@ $color-menu: #1E2132;
 @import url('./assets/css/ChangeInfo.scss');
 @import url('./assets/css/ListProduct.scss');
 @import url('./assets/css/ListCart.scss');
+@import url('./assets/css/Order.scss');
 @import url('./assets/css/MyPurchase.scss');
 @import url('./assets/css/DetailProduct.scss');
 @import url('./assets/css/Footer.scss');
